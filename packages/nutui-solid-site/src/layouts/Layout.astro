@@ -1,56 +1,153 @@
 ---
 interface Props {
-	title: string;
+  title: string;
 }
 
+import '../assets/styles/reset.scss';
+import '../assets/styles/highlight.scss';
+import '../assets/styles/md-style.scss';
+import '../assets/styles/header.scss';
+import { version } from '../../package.json';
+import Nav from '@/components/nav/nav';
+
 const { title } = Astro.props;
-import '../styles/reset.scss'
-import '../styles/highlight.scss'
-import '../styles/md-style.scss'
+const pathName = Astro.url.pathname.split('/');
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<div class="doc-content-document">
-			<slot />
-		</div>
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="doc-header doc-header-red">
+      <div class="header-logo">
+        <a class="logo-link" href="#/"></a>
+        <span class="logo-border"></span>
+        <span class="version">{version}</span>
+      </div>
+      <div class="header-nav">
+        <a href="https://github.com/jdf2e/nutui-docs" target="_blank">
+          当前环境：development ,代码 PR 合并后，文档会自动同步至
+          https://github.com/jdf2e/nutui-docs
+        </a>
+      </div>
+    </div>
+    <Nav client:load />
+    <div class="doc-content">
+      <div class="doc-title">
+        <div class="doc-title-position">
+          <div class="title">
+            {pathName[pathName.length - 1]}&nbsp;
+          </div>
+          <div class="doc-content-issue">
+            <a
+              class="issue-item"
+              href="https://github.com/jdf2e/nutui-react/issues"
+              target="_blank"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                ><path fill="#ffa200" d="M17 15V5h-2v10H5v2h10v10h2V17h10v-2z"
+                ></path></svg
+              >
+              Issue
+            </a>
+            <a
+              class="issue-item"
+              href="https://github.com/jdf2e/nutui-react/issues?q=is:issue+is:open"
+              target="_blank"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                ><path
+                  fill="none"
+                  d="M16 8a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 8Zm4 13.875h-2.875v-8H13v2.25h1.875v5.75H12v2.25h8Z"
+                ></path><path
+                  fill="#ffa200"
+                  d="M16 2a14 14 0 1 0 14 14A14 14 0 0 0 16 2Zm0 6a1.5 1.5 0 1 1-1.5 1.5A1.5 1.5 0 0 1 16 8Zm4 16.125h-8v-2.25h2.875v-5.75H13v-2.25h4.125v8H20Z"
+                ></path></svg
+              >
+              Open
+            </a>
+            <a
+              class="issue-item"
+              href={`https://github.com/jdf2e/nutui-react/issues?q=is:issue+is:closed+${pathName[pathName.length - 1]}`}
+              target="_blank"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 32 32"
+                ><path
+                  fill="#ffa200"
+                  d="m13 24l-9-9l1.414-1.414L13 21.171L26.586 7.586L28 9L13 24z"
+                ></path></svg
+              >
+              Closed
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="doc-content-document isComponent">
+        <slot />
+      </div>
+    </div>
+  </body>
 </html>
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
-	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+  :root {
+    --accent: 136, 58, 234;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light)) 30%,
+      white 60%
+    );
+  }
+  html {
+    font-family: system-ui, sans-serif;
+    background: #13151a;
+    background-size: 224px;
+  }
+  code {
+    font-family:
+      Menlo,
+      Monaco,
+      Lucida Console,
+      Liberation Mono,
+      DejaVu Sans Mono,
+      Bitstream Vera Sans Mono,
+      Courier New,
+      monospace;
+  }
+  .doc-content {
+    margin-left: 290px;
+    display: flex;
+    flex-direction: column;
+  }
+  .doc-title-position {
+    position: sticky;
+    padding: 24px 48px;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+    background: #fff;
+  }
 </style>

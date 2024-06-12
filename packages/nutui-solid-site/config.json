@@ -1,0 +1,110 @@
+{
+  "docs": {
+    "name": "指南",
+    "packages": [
+      {
+        "name": "intro-react",
+        "cName": "介绍",
+        "eName": "Introduction",
+        "show": true
+      },
+      {
+        "name": "start-react",
+        "cName": "快速上手",
+        "eName": "Quickstart",
+        "show": true
+      },
+      {
+        "name": "theme-react",
+        "cName": "主题定制",
+        "eName": "Customize Theme",
+        "show": true
+      },
+      {
+        "name": "migrate-from-v1",
+        "cName": "从 v1 升级到 v2",
+        "eName": "Migrate-from-v1",
+        "show": true
+      },
+      {
+        "name": "international-react",
+        "cName": "国际化",
+        "eName": "Internationalization",
+        "show": true
+      },
+      {
+        "name": "contributing-react",
+        "cName": "贡献指南",
+        "eName": "Contributing",
+        "show": true
+      },
+      {
+        "name": "resource",
+        "cName": "资源",
+        "eName": "Resources",
+        "show": false
+      },
+      {
+        "name": "https://github.com/jdf2e/nutui-react/releases",
+        "cName": "更新日志",
+        "eName": "Changelog",
+        "show": true,
+        "isLink": true
+      }
+    ]
+  },
+  "nav": [
+    {
+      "name": "基础组件",
+      "enName": "base",
+      "packages": [
+        {
+          "version": "2.0.0",
+          "name": "Button",
+          "type": "component",
+          "cName": "按钮",
+          "desc": "按钮",
+          "sort": 1,
+          "show": true,
+          "taro": true,
+          "author": ""
+        }
+      ]
+    },
+    {
+      "name": "布局组件",
+      "enName": "layout",
+      "packages": []
+    },
+    {
+      "name": "导航组件",
+      "enName": "nav",
+      "packages": []
+    },
+    {
+      "name": "数据录入",
+      "enName": "dentry",
+      "packages": []
+    },
+    {
+      "name": "数据录入",
+      "enName": "dentry1",
+      "packages": []
+    },
+    {
+      "name": "操作反馈",
+      "enName": "feedback",
+      "packages": []
+    },
+    {
+      "name": "展示组件",
+      "enName": "exhibition",
+      "packages": []
+    },
+    {
+      "name": "特色组件",
+      "enName": "business",
+      "packages": []
+    }
+  ]
+}

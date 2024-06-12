@@ -1,0 +1,12 @@
+{
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "eslint.options": {
+    //指定eslint配置文件位置
+    "overrideConfigFile": "eslint.config.js" //指定项目根目录中的eslint配置文件
+  },
+  "editor.formatOnSave": true,
+  "eslint.format.enable": true,
+}
