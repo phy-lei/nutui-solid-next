@@ -140,10 +140,13 @@ const pathName = Astro.url.pathname.split('/');
     display: flex;
     flex-direction: column;
   }
-  .doc-title-position {
+  .doc-title {
     position: sticky;
-    padding: 24px 48px;
     top: 0;
+    z-index: 9999;
+  }
+  .doc-title-position {
+    padding: 24px 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
