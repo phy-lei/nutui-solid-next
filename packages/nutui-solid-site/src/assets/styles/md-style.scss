@@ -2,10 +2,11 @@
 .doc-content-document {
   position: relative;
   background: #fff;
-  padding-top: 40px;
   padding-bottom: 40px;
   padding-left: 40px;
-  padding-right: 445px;
+  padding-right: 30px;
+  box-sizing: border-box;
+  flex: 1;
   .card {
     margin-bottom: 24px;
     padding: 24px;
@@ -50,10 +51,10 @@
   }
 
   h1 {
-    margin: 0 0 30px;
+    margin: 0 0 56px;
     font-size: 30px;
     cursor: #1a1a1a;
-    font-weight: bold;
+    font-weight: 700;
     position: relative;
     margin-bottom: 56px;
     // display: none;
@@ -70,26 +71,26 @@
   }
 
   h2 {
-    margin: 45px 0 20px;
-    font-size: 24px;
+    margin: 16px 0;
+    font-size: 20px
   }
 
   h3 {
-    margin: 16px 0px;
-    font-weight: 600;
-    font-size: 20px;
+    margin: 16px 0;
+    font-weight: 400;
+    font-size: 18px
   }
 
   h4 {
     margin: 24px 0 12px;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 16px
   }
 
   h5 {
     margin: 24px 0 12px;
     font-weight: 600;
-    font-size: 15px;
+    font-size: 15px
   }
 
   p {
