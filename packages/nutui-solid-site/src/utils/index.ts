@@ -28,3 +28,7 @@ export function copyCodeHtml(code: string, callback: any): void {
   oInput.setSelectionRange(0, 9999)
   callback()
 }
+export function isMobile(userAgent: string) {
+  const ua = userAgent.toLowerCase();
+  return /ios|iphone|ipod|ipad|android/.test(ua)
+} 

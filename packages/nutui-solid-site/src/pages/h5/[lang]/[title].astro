@@ -1,9 +1,14 @@
 ---
 import { getEntry } from 'astro:content';
+import { isMobile } from '@/utils';
 
 type Lang = 'en' | 'zh-cn' | 'zh-tw';
 
 const { title, lang } = Astro.params;
+const userAgent = Astro.request.headers.get('user-agent');
+if (isMobile(userAgent)) {
+  return Astro.redirect(`/`);
+}
 
 const entry = await getEntry(lang as Lang, title);
 

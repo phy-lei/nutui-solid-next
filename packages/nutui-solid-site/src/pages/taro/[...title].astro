@@ -1,6 +1,12 @@
 ---
 import { getEntry } from 'astro:content';
+import { isMobile } from '@/utils';
+
 const { title } = Astro.params;
+const userAgent = Astro.request.headers.get('user-agent');
+if (isMobile(userAgent)) {
+  return Astro.redirect(`/`);
+}
 
 const entry = await getEntry('taro', title);
 
