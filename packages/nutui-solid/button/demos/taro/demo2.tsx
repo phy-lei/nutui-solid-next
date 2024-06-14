@@ -1,8 +1,8 @@
-const Demo1 = () => {
+const Demo2 = () => {
   const marginStyle = { margin: '8px' }
   return (
-    <div>
-      <div type="primary" style={marginStyle} onClick={() => console.log(123123)}>
+    <>
+      <div type="primary" style={marginStyle} onClick={() => console.log(444)}>
         Primary
       </div>
       <div type="info" style={marginStyle}>
@@ -20,7 +20,7 @@ const Demo1 = () => {
       <div type="success" style={marginStyle}>
         Success
       </div>
-    </div>
+    </>
   )
 }
-export default Demo1
+export default Demo2

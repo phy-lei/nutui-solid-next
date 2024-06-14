@@ -1,0 +1,206 @@
+---
+interface Props {
+  title: string;
+}
+
+import '../assets/styles/reset.scss';
+import '../assets/styles/highlight.scss';
+import '../assets/styles/md-style.scss';
+import '../assets/styles/header.scss';
+
+const { title } = Astro.props;
+const pathName = Astro.url.pathname.split('/');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div id="app">
+      <div id="nav">
+        <div class="back">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="1em"
+            height="1em"
+            viewBox="0 0 32 32"
+            ><path fill="#000" d="M10 16L20 6l1.4 1.4l-8.6 8.6l8.6 8.6L20 26z"
+            ></path></svg
+          >
+        </div>
+        {pathName[pathName.length - 1]}
+        <div class="translate">
+          <img
+            class={'dark-model'}
+            src="https://storage.360buyimg.com/imgtools/71a2689855-ba1f4000-80cb-11ed-aa68-651117499129.png"
+            alt=""
+          />
+          <img
+            class={'translate-icon'}
+            src="https://img14.360buyimg.com/imagetools/jfs/t1/135168/8/21387/6193/625fa81aEe07cc347/55ad5bc2580c53a6.png"
+            alt=""
+          />
+        </div>
+      </div>
+    </div>
+    <slot />
+  </body>
+</html>
+<style lang="scss" is:global>
+  :root {
+    --accent: 136, 58, 234;
+    --accent-light: 224, 204, 250;
+    --accent-dark: 49, 10, 101;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light)) 30%,
+      white 60%
+    );
+  }
+  html,
+  body {
+    &::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
+    }
+  }
+
+  #app {
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    #nav {
+      position: fixed;
+      z-index: 10;
+      left: 0;
+      right: 0;
+      height: 57px;
+      line-height: 57px;
+      text-align: center;
+      background: white;
+      font-weight: bold;
+      font-size: 20px;
+      color: rgba(51, 51, 51, 1);
+      box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.07);
+
+      .back {
+        position: absolute;
+        left: 0;
+        height: 100%;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .translate {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      .dark-model {
+        margin-right: 10px;
+        width: 20px;
+        height: 20px;
+      }
+
+      .translate-icon {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    .demo {
+      min-height: 100vh;
+
+      &.no-overflow {
+        overflow: unset;
+      }
+
+      height: 100%;
+      background: #f7f8fa;
+      overflow-x: hidden;
+      overflow-y: auto;
+      padding: 57px 17px 0 17px;
+
+      &.full {
+        padding: 57px 0 0 0;
+
+        h2 {
+          padding-left: 17px;
+        }
+      }
+
+      &.bg-w {
+        background: #fff;
+      }
+
+      &::-webkit-scrollbar {
+        width: 0;
+        background: transparent;
+      }
+
+      > h2 {
+        margin-top: 30px;
+        margin-bottom: 10px;
+        font-size: 14px;
+        color: rgba(144, 156, 164, 1);
+        padding: 0 10px;
+        font-weight: normal;
+      }
+
+      > p {
+        font-size: 12px;
+      }
+
+      .card {
+        padding: 25px 18px;
+        background: rgba(255, 255, 255, 1);
+      }
+    }
+  }
+
+  .nut-theme-dark .demo {
+    background: #000 !important;
+  }
+
+  [dir='rtl'] #app,
+  .nut-rtl #app {
+    #nav {
+      .back {
+        right: 0;
+      }
+      .translate {
+        left: 0;
+        right: auto;
+      }
+      .nut-icon {
+        transform: rotate(180deg);
+      }
+      .dark-model {
+        transform: rotate(-270deg);
+        margin-right: 0;
+        margin-left: 10px;
+      }
+    }
+  }
+</style>

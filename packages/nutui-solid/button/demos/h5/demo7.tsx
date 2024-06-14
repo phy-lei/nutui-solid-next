@@ -1,4 +1,4 @@
-const Demo1 = () => {
+const Demo7 = () => {
   const marginStyle = { margin: '8px' }
   return (
     <div>
@@ -23,4 +23,4 @@ const Demo1 = () => {
     </div>
   )
 }
-export default Demo1
+export default Demo7

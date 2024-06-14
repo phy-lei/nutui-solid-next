@@ -10,13 +10,14 @@ export const modules = import.meta.glob(
     eager: true,
   }
 );
+
 export interface Props {
   src: string;
 }
 const { src } = Astro.props;
-const pathName = Astro.url.pathname.split('/');
-const highlightedCode =
-  modules[`../../../nutui-solid/${pathName[pathName.length - 1]}/demos/${src}`];
+const { title } = Astro.params;
+
+const highlightedCode = modules[`../../../nutui-solid/${title}/demos/${src}`];
 ---
 
 <DemoBlock client:load text={highlightedCode} scss="">
