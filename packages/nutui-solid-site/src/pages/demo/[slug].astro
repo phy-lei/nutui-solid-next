@@ -2,11 +2,10 @@
 import MobileLayout from '@/layouts/MobileLayout.astro';
 import Dymaic from '@/components/Dymaic';
 
-const pathName = Astro.url.pathname.split('/');
 // 1. 为每个集合条目生成一个新路径
 // const components = await import('../../../../nutui-solid/**/demos/*/*.tsx');
 const components = await Astro.glob(
-  `../../../../nutui-solid/button/demos/h5/demo1.tsx`
+  `../../../../nutui-solid/src/button/demos/h5/demo1.tsx`
 );
 
 console.log(
