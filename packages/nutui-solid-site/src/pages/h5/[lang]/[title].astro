@@ -3,17 +3,13 @@ import { getEntry } from 'astro:content';
 
 type Lang = 'en' | 'zh-cn' | 'zh-tw';
 
-// 1. 从传入的服务器请求中获取 slug
 const { title, lang } = Astro.params;
 
-// 2. 直接使用请求 slug 查询条目
 const entry = await getEntry(lang as Lang, title);
 
-// 3. 如果条目不存在，则重定向到 404
-// if (entry === undefined) {
-//   return Astro.redirect('/404');
-// }
-// 4. （可选）在模板中将条目呈现为 HTML
+if (entry === undefined) {
+  return Astro.redirect('/404');
+}
 const { Content } = await entry.render();
 ---
 
