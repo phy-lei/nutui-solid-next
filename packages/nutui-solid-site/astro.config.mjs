@@ -1,5 +1,6 @@
-import { defineConfig } from 'astro/config'
-import remarkGfm from 'remark-gfm'
+import { defineConfig } from 'astro/config';
+import remarkGfm from 'remark-gfm';
+import remarkDirective from 'remark-directive';
 import solidJs from '@astrojs/solid-js';
 import mdx from '@astrojs/mdx';
 
@@ -32,6 +33,6 @@ export default defineConfig({
       // 查找常用转换器：https://shiki.style/packages/transformers
       transformers: [],
     },
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkDirective],
   },
 })

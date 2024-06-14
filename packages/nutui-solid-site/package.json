@@ -16,6 +16,7 @@
     "astro": "^4.10.2",
     "highlight.js": "^11.9.0",
     "lzutf8": "^0.6.3",
+    "remark-directive": "^3.0.0",
     "remark-gfm": "^4.0.0",
     "solid-js": "^1.8.17",
     "typescript": "^5.4.5"
