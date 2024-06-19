@@ -36,17 +36,17 @@ export default defineConfig({
       beforeWriteFile(filePath, content) {
         return { filePath: filePath.replace('src/', ''), content }
       },
-      afterBuild: () => {
-        fse
-          .readFile('./dist/types/packages/nutui.react.build.d.ts', 'utf-8')
-          .then((data: string) => {
-            fse.remove('./dist/types/packages/nutui.react.build.d.ts')
-            fse.outputFile(
-              './dist/types/index.d.ts',
-              `${data.replace(/\.\.\//g, './')}`
-            )
-          })
-      },
+      // afterBuild: () => {
+      //   fse
+      //     .readFile('./dist/types/packages/nutui.react.build.d.ts', 'utf-8')
+      //     .then((data: string) => {
+      //       fse.remove('./dist/types/packages/nutui.react.build.d.ts')
+      //       fse.outputFile(
+      //         './dist/types/index.d.ts',
+      //         `${data.replace(/\.\.\//g, './')}`
+      //       )
+      //     })
+      // },
     }),
   ],
   build: {
@@ -58,25 +58,19 @@ export default defineConfig({
       output: [
         {
           banner,
-
           format: 'es',
-          entryFileNames: 'nutui.react.es.js',
+          entryFileNames: 'nutui.solid.es.js',
         },
         {
           banner,
-          // 在 UMD 构建模式下为这些外部化的依赖提供一个全局变量
-          globals: {
-            react: 'React',
-            'react-dom': 'ReactDOM',
-          },
-          name: 'nutui.react',
+          name: 'nutui.solid',
           format: 'umd',
-          entryFileNames: 'nutui.react.umd.js',
+          entryFileNames: 'nutui.solid.umd.js',
         },
       ],
     },
     lib: {
-      entry: 'src/packages/nutui.react.build.ts',
+      entry: '',
     },
   },
 })

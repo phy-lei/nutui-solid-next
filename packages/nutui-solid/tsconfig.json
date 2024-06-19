@@ -6,7 +6,9 @@
     "types": ["vite-plugin-pwa/info"],
     "paths": {
       "@/*": ["./src/*"]
-    }
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true
   },
   "include": ["**/*.ts", "**/*.tsx"]
 }
