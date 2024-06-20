@@ -26,6 +26,7 @@ export default [
       // Some cannot be fixed due to dependency issue
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/ban-ts-comment": "warn",
+      "@typescript-eslint/no-var-requires": "off"
     },
   },
 ];

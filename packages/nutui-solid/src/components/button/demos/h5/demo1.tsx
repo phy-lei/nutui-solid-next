@@ -4,7 +4,7 @@ const Demo1 = () => {
   const marginStyle = { margin: '8px' }
   return (
     <>
-      <Button type="primary" style={marginStyle} onClick={() => console.log(12312)}>
+      <Button type="primary" style={marginStyle}>
         Primary
       </Button>
       <Button type="info" style={marginStyle}>

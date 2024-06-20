@@ -64,11 +64,17 @@ export default defineConfig({
       output: [
         {
           banner,
+          globals: {
+            solidJs: 'solidJs',
+          },
           format: 'es',
           entryFileNames: 'nutui.solid.es.js',
         },
         {
           banner,
+          globals: {
+            solidJs: 'solidJs',
+          },
           name: 'nutui.solid',
           format: 'umd',
           entryFileNames: 'nutui.solid.umd.js',

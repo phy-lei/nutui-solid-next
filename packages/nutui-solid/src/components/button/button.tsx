@@ -1,6 +1,4 @@
-import { mergeProps, splitProps, Show } from 'solid-js'
-import classNames from 'classnames'
-import { toObjectStyle } from '@/utils/style'
+import { mergeProps, splitProps, Show, createMemo} from 'solid-js'
 import { type Component, type JSX } from 'solid-js'
 
 export type ButtonType =
@@ -14,34 +12,29 @@ export type ButtonSize = 'xlarge' | 'large' | 'normal' | 'small' | 'mini'
 export type ButtonShape = 'square' | 'round'
 export type ButtonFill = 'solid' | 'outline' | 'dashed' | 'none'
 
-export interface ButtonProps extends JSX.HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends JSX.HTMLAttributes<HTMLDivElement> {
   color: string
   shape: ButtonShape
-  type: ButtonType
-  size: ButtonSize
-  fill: ButtonFill
-  block: boolean
+  plain: boolean
   loading: boolean
   disabled: boolean
+  type: ButtonType
+  size: ButtonSize
+  block: boolean
   icon: JSX.Element
-  rightIcon: JSX.Element
-  nativeType: 'submit' | 'reset' | 'button'
 }
 
-const prefixCls = 'nut-button'
 
 const defaultProps: ButtonProps = {
   color: '',
-  type: 'default',
-  size: 'normal',
   shape: 'round',
-  fill: 'outline',
+  plain: false,
   loading: false,
   disabled: false,
+  type: 'default',
+  size: 'normal',
   block: false,
-  icon: null,
-  rightIcon: null,
-  nativeType: 'button',
+  icon: null
 }
 
 export const Button: Component<Partial<ButtonProps>> = (props) => {
@@ -49,39 +42,37 @@ export const Button: Component<Partial<ButtonProps>> = (props) => {
   const [local, rest] = splitProps(merged, [
     'color',
     'shape',
-    'fill',
+    'plain',
     'loading',
     'disabled',
+    'icon',
     'type',
     'size',
     'block',
-    'icon',
-    'rightIcon',
     'children',
     'class',
     'style',
-    'nativeType',
     'onClick',
     'ref',
   ])
-  const getStyle = () => {
-    const style: JSX.CSSProperties = {}
+  
+  const getStyle = createMemo(() => {
+    let style: JSX.CSSProperties = {}
     if (local.color) {
-      if (local.fill === 'outline' || local.fill === 'dashed') {
-        style.color = local.color
-        if (!local.color?.includes('gradient')) {
-          style['border-color'] = local.color
-        }
-      } else {
-        style.color = '#fff'
-        style.background = local.color
+      style = {
+        color: local.plain ? local.color : '#fff',
+        background: local.plain ? '#fff' : `border-box ${local.color}`
+      }
+      if (local.color.includes('gradient')) {
         style['border-color'] = 'transparent'
+      } else {
+        style['border-color'] = local.color
       }
     }
     return style
-  }
+  })
 
-  const handleClick: JSX.EventHandler<HTMLButtonElement, MouseEvent> = (e) => {
+  const handleClick: JSX.EventHandler<HTMLDivElement, MouseEvent> = (e) => {
     if (!local.loading && !local.disabled && local.onClick) {
       if (typeof local.onClick === 'function') {
         local.onClick(e)
@@ -89,26 +80,26 @@ export const Button: Component<Partial<ButtonProps>> = (props) => {
     }
   }
 
+  const classes = createMemo(() => {
+    const prefixCls = 'nut-button'
+    return {
+      [prefixCls]: true,
+      [`${prefixCls}--${local.type}`]: !!local.type,
+      [`${prefixCls}--${local.size}`]: !!local.size,
+      [`${prefixCls}--${local.shape}`]: !!local.shape,
+      [`${prefixCls}--plain`]: local.plain,
+      [`${prefixCls}--block`]: local.block,
+      [`${prefixCls}--disabled`]: local.disabled,
+      [`${prefixCls}--loading`]: local.loading
+    }
+  })
+
   return (
-    <button
+    <div
       {...rest}
       ref={local.ref}
-      type={local.nativeType}
-      class={classNames(
-        prefixCls,
-        `${prefixCls}-${local.type}`,
-        local.fill ? `${prefixCls}-${local.fill}` : null,
-        local.children ? '' : `${prefixCls}-icononly`,
-        {
-          [`${prefixCls}-${local.size}`]: local.size,
-          [`${prefixCls}-${local.shape}`]: local.shape,
-          [`${prefixCls}-block`]: local.block,
-          [`${prefixCls}-disabled`]: local.disabled || local.loading,
-          [`${prefixCls}-loading`]: local.loading,
-        },
-        local.class
-      )}
-      style={{ ...getStyle(), ...toObjectStyle(local.style ?? {}) }}
+      classList={classes()}
+      style={getStyle()}
       onClick={handleClick}
     >
       <div class="nut-button-wrap">
@@ -257,17 +248,12 @@ export const Button: Component<Partial<ButtonProps>> = (props) => {
         </Show>
         <Show when={local.children} fallback={null}>
           <div
-            class={`${local.icon || local.loading ? 'nut-button-text' : ''}${
-              local.rightIcon ? ' nut-button-text right' : ''
-            }`}
+            class={`${local.icon || local.loading ? 'nut-button__text' : ''}`}
           >
             {local.children}
           </div>
         </Show>
-        <Show when={local.rightIcon} fallback={null}>
-          {local.rightIcon}
-        </Show>
       </div>
-    </button>
+    </div>
   )
 }

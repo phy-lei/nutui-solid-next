@@ -1,5 +1,5 @@
 import { createSignal, onMount, onCleanup, For, Show } from 'solid-js'
-import { nav } from 'config.json'
+import { nav } from '~/config.json'
 import './nav.scss'
 import useLocale from '@/assets/locale/uselocale'
 
