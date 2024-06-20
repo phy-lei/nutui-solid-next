@@ -5,5 +5,4 @@
     "jsxImportSource": "solid-js",
     "types": ["vite-plugin-pwa/info"],
   },
-  "include": ["**/*.ts", "**/*.tsx", "**/*.astro"]
 }

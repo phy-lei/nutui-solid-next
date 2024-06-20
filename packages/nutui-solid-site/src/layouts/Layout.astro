@@ -10,8 +10,8 @@ import '../assets/styles/header.scss';
 import { version } from '../../package.json';
 import Nav from '@/components/nav/nav';
 
-const { title } = Astro.props;
-const pathName = Astro.url.pathname.split('/');
+const { title } = Astro.params;
+console.log(title, 'com');
 ---
 
 <!doctype html>
@@ -43,7 +43,7 @@ const pathName = Astro.url.pathname.split('/');
       <div class="doc-title">
         <div class="doc-title-position">
           <div class="title">
-            {pathName[pathName.length - 1]}&nbsp;
+            {title}&nbsp;
           </div>
           <div class="doc-content-issue">
             <a
@@ -83,7 +83,7 @@ const pathName = Astro.url.pathname.split('/');
             </a>
             <a
               class="issue-item"
-              href={`https://github.com/jdf2e/nutui-react/issues?q=is:issue+is:closed+${pathName[pathName.length - 1]}`}
+              href={`https://github.com/jdf2e/nutui-react/issues?q=is:issue+is:closed+${title}`}
               target="_blank"
             >
               <svg
@@ -108,7 +108,7 @@ const pathName = Astro.url.pathname.split('/');
         <div class="doc-demo-preview-wrapper">
           <div class="doc-demo-preview">
             <iframe
-              src=`https://nutui.jd.com/h5/react/2x/demo.html#/zh-CN/component/button`
+              src=`http://localhost:4321/demo/h5/${title}`
               width="100%"
               height="100%"></iframe>
           </div>

@@ -3,6 +3,7 @@ import dts from 'vite-plugin-dts'
 import fse from 'fs-extra'
 import path from 'path'
 import config from './package.json'
+import solidPlugin from './plugin/vite-plugin-solid'
 
 const banner = `/*!
 * ${config.name} v${config.version} ${new Date()}
@@ -23,30 +24,35 @@ export default defineConfig({
     alias: [{ find: '@', replacement: resolve(__dirname, './src') }],
   },
   plugins: [
+    solidPlugin(),
     dts({
       outDir: 'dist/types',
       clearPureImport: false,
+      include: [
+        "src/components/nutui.solid.build.ts",
+        "src/components/**/*.ts",
+        "src/components/**/*.tsx",
+      ],
       exclude: [
         'node_modules/**',
-        'src/sites/**',
-        'src/**/demo.tsx',
-        'src/**/demo.taro.tsx',
+        'src/components/**/demos/**',
         'src/**/*.spec.tsx',
+        'plugin/**'
       ],
       beforeWriteFile(filePath, content) {
         return { filePath: filePath.replace('src/', ''), content }
       },
-      // afterBuild: () => {
-      //   fse
-      //     .readFile('./dist/types/packages/nutui.react.build.d.ts', 'utf-8')
-      //     .then((data: string) => {
-      //       fse.remove('./dist/types/packages/nutui.react.build.d.ts')
-      //       fse.outputFile(
-      //         './dist/types/index.d.ts',
-      //         `${data.replace(/\.\.\//g, './')}`
-      //       )
-      //     })
-      // },
+      afterBuild: () => {
+        fse
+          .readFile('./dist/types/components/nutui.solid.build.d.ts', 'utf-8')
+          .then((data: string) => {
+            fse.remove('./dist/types/components/nutui.solid.build.d.ts')
+            fse.outputFile(
+              './dist/types/index.d.ts',
+              `${data.replace(/\.\.\//g, './')}`
+            )
+          })
+      },
     }),
   ],
   build: {
@@ -70,7 +76,7 @@ export default defineConfig({
       ],
     },
     lib: {
-      entry: '',
+      entry: 'src/components/nutui.solid.build.ts',
     },
   },
 })

@@ -19,6 +19,7 @@
     "typescript-eslint": "^7.10.0"
   },
   "dependencies": {
+    "nutui-solid": "workspace:*",
     "solid-js": "^1.8.17"
   }
 }

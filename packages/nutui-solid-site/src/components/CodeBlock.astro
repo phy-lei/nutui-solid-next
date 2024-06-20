@@ -4,7 +4,7 @@ import DemoBlock from './DemoBlock';
 import './demoblock.scss';
 
 export const modules = import.meta.glob(
-  '../../../nutui-solid/src/**/demos/*/*.tsx',
+  '../../../nutui-solid/src/components/**/demos/*/*.tsx',
   {
     as: 'raw',
     eager: true,
@@ -18,7 +18,7 @@ const { src } = Astro.props;
 const { title } = Astro.params;
 
 const highlightedCode =
-  modules[`../../../nutui-solid/src/${title}/demos/${src}`];
+  modules[`../../../nutui-solid/src/components/${title}/demos/${src}`];
 ---
 
 <DemoBlock client:load text={highlightedCode} scss="">
