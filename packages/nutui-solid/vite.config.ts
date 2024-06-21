@@ -44,9 +44,9 @@ export default defineConfig({
       },
       afterBuild: () => {
         fse
-          .readFile('./dist/types/components/nutui.solid.build.d.ts', 'utf-8')
+          .readFile('./dist/types/nutui.solid.build.d.ts', 'utf-8')
           .then((data: string) => {
-            fse.remove('./dist/types/components/nutui.solid.build.d.ts')
+            fse.remove('./dist/types/nutui.solid.build.d.ts')
             fse.outputFile(
               './dist/types/index.d.ts',
               `${data.replace(/\.\.\//g, './')}`

@@ -1,0 +1,117 @@
+# todo component list
+- [x] Button
+- [ ] Cell
+- [ ] CellGroup
+- [ ] Icon
+- [ ] Overlay
+- [ ] Popup
+- [ ] ConfigProvider
+- [ ] Image
+- [ ] Layout
+- [ ] Col
+- [ ] Row
+- [ ] Sticky
+- [ ] Divider
+- [ ] Grid
+- [ ] GridItem
+- [ ] Space
+- [ ] Navbar
+- [ ] FixedNav
+- [ ] Menu
+- [ ] MenuItem
+- [ ] Tabbar
+- [ ] TabbarItem
+- [ ] Elevator
+- [ ] Pagination
+- [ ] Tabs
+- [ ] TabPane
+- [ ] Indicator
+- [ ] SideNavbar
+- [ ] SideNavbarItem
+- [ ] SubSideNavbar
+- [ ] Range
+- [ ] Searchbar
+- [ ] Cascader
+- [ ] Calendar
+- [ ] CalendarCard
+- [ ] Checkbox
+- [ ] CheckboxGroup
+- [ ] DatePicker
+- [ ] InputNumber
+- [ ] Input
+- [ ] Radio
+- [ ] RadioGroup
+- [ ] Rate
+- [ ] Picker
+- [ ] ShortPassword
+- [ ] Textarea
+- [ ] Uploader
+- [ ] NumberKeyboard
+- [ ] Form
+- [ ] FormItem
+- [ ] Swipe
+- [ ] SwipeGroup
+- [ ] ActionSheet
+- [ ] Backtop
+- [ ] Drag
+- [ ] Dialog
+- [ ] InfiniteLoading
+- [ ] PullRefresh
+- [ ] Notify
+- [ ] Switch
+- [ ] Toast
+- [ ] Audio
+- [ ] AudioOperate
+- [ ] Avatar
+- [ ] AvatarGroup
+- [ ] List
+- [ ] Progress
+- [ ] CircleProgress
+- [ ] Noticebar
+- [ ] Empty
+- [ ] Video
+- [ ] Steps
+- [ ] Step
+- [ ] Swiper
+- [ ] SwiperItem
+- [ ] Price
+- [ ] ImagePreview
+- [ ] Countup
+- [ ] Countdown
+- [ ] Badge
+- [ ] Tag
+- [ ] Popover
+- [ ] Skeleton
+- [ ] Collapse
+- [ ] CollapseItem
+- [ ] Table
+- [ ] Animate
+- [ ] Ellipsis
+- [ ] Watermark
+- [ ] TrendArrow
+- [ ] Tour
+- [ ] Address
+- [ ] Barrage
+- [ ] Signature
+- [ ] TimeSelect
+- [ ] TimePannel
+- [ ] TimeDetail
+- [ ] Sku
+- [ ] Card
+- [ ] Ecard
+- [ ] AddressList
+- [ ] Category
+- [ ] CategoryPane
+- [ ] Comment
+- [ ] Invoice
+- [ ] AvatarCropper
+
+# 开发调试
+```bash
+pnpm i
+pnpm run dev
+```
+每次修改了组件后，需要手动build下组件库
+```bash
+pnpm run build-ui
+```

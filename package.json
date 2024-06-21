@@ -5,6 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "dev": "pnpm build-ui && pnpm --filter nutui-solid-site run dev",
+    "build-ui": "pnpm --filter nutui-solid run build",
     "lint": "eslint --cache .",
     "lint:fix": "pnpm lint --fix"
   },

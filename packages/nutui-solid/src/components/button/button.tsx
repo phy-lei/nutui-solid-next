@@ -102,7 +102,7 @@ export const Button: Component<Partial<ButtonProps>> = (props) => {
       style={getStyle()}
       onClick={handleClick}
     >
-      <div class="nut-button-wrap">
+      <div class="nut-button__wrap">
         <Show when={local.loading} fallback={null}>
           {/* Loading Component */}
           <svg

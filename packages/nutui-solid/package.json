@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "generate:themes": "node scripts/generate-themes.cjs",
-    "build": "vite build",
+    "build": "pnpm build-components && pnpm build-css",
+    "build-components": "vite build",
     "build-css": "pnpm generate:themes && vite build -c vite.config.build.css.ts"
   },
   "keywords": [],
