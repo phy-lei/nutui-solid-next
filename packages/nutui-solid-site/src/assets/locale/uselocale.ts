@@ -9,7 +9,9 @@ export const getLocale = () => {
       ;[, locale] = matched
       if (config.locales.indexOf(locale) === -1) locale = 'zh-CN'
     }
-  } catch (e) {}
+  } catch (e) {
+    console.log(e);
+  }
 
   return locale
 }
@@ -24,11 +26,15 @@ const useLocale = (): [Accessor<string>, Setter<string>] => {
   onMount(() => {
     try {
       window.parent.addEventListener('popstate', handlePopState)
-    } catch (e) {}
+    } catch (e) {
+      console.log(e);
+    }
     return () => {
       try {
         window.parent.removeEventListener('popstate', handlePopState)
-      } catch (e) {}
+      } catch (e) {
+        console.log(e);
+      }
     }
   })
 

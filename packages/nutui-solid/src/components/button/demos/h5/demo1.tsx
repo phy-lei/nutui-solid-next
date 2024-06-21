@@ -1,25 +1,24 @@
 import { Button } from 'nutui-solid'
 
 const Demo1 = () => {
-  const marginStyle = { margin: '8px' }
   return (
     <>
-      <Button type="primary" style={marginStyle}>
+      <Button type="primary">
         Primary
       </Button>
-      <Button type="info" style={marginStyle}>
+      <Button type="info">
         Info
       </Button>
-      <Button type="default" style={marginStyle}>
+      <Button type="default">
         Default
       </Button>
-      <Button type="danger" style={marginStyle}>
+      <Button type="danger">
         Danger
       </Button>
-      <Button type="warning" style={marginStyle}>
+      <Button type="warning">
         Warning
       </Button>
-      <Button type="success" style={marginStyle}>
+      <Button type="success">
         Success
       </Button>
     </>

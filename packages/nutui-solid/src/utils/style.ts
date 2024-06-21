@@ -1,7 +1,6 @@
 import { isObject } from './is'
-import { type JSX } from 'solid-js'
 
-export function toObjectStyle(style: string | JSX.CSSProperties) {
+export function toObjectStyle(style: string) {
   if (isObject(style)) {
     return style
   }

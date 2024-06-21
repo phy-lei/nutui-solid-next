@@ -1,4 +1,4 @@
-import { mergeProps, splitProps, Show, createMemo} from 'solid-js'
+import { mergeProps, splitProps, Show, createMemo } from 'solid-js'
 import { type Component, type JSX } from 'solid-js'
 
 export type ButtonType =
@@ -55,7 +55,7 @@ export const Button: Component<Partial<ButtonProps>> = (props) => {
     'onClick',
     'ref',
   ])
-  
+
   const getStyle = createMemo(() => {
     let style: JSX.CSSProperties = {}
     if (local.color) {
@@ -111,7 +111,7 @@ export const Button: Component<Partial<ButtonProps>> = (props) => {
             height="32"
             viewBox="0 0 24 24"
           >
-            <circle cx="12" cy="2" r="0" fill="#ffa200">
+            <circle cx="12" cy="2" r="0" fill="#fff">
               <animate
                 attributeName="r"
                 begin="0"

@@ -1,26 +1,12 @@
+import { Button } from 'nutui-solid'
+
 const Demo9 = () => {
-  const marginStyle = { margin: '8px' }
   return (
-    <div>
-      <div type="primary" style={marginStyle} onClick={() => console.log(123123)}>
-        Primary
-      </div>
-      <div type="info" style={marginStyle}>
-        Info
-      </div>
-      <div type="default" style={marginStyle}>
-        Default
-      </div>
-      <div type="danger" style={marginStyle}>
-        Danger
-      </div>
-      <div type="warning" style={marginStyle}>
-        Warning
-      </div>
-      <div type="success" style={marginStyle}>
-        Success
-      </div>
-    </div>
+    <>
+      <Button color="#7232dd">Pure</Button>
+      <Button color="#7232dd" plain>Pure</Button>
+      <Button color="linear-gradient(to right, #ff6034, #ee0a24)"> Gradient </Button>
+    </>
   )
 }
 export default Demo9

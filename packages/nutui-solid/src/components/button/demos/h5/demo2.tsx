@@ -1,26 +1,11 @@
-const Demo2 = () => {
-  const marginStyle = { margin: '8px' }
+import { Button } from 'nutui-solid'
+
+const Demo1 = () => {
   return (
     <>
-      <div type="primary" style={marginStyle} onClick={() => console.log(444)}>
-        Primary
-      </div>
-      <div type="info" style={marginStyle}>
-        Info
-      </div>
-      <div type="default" style={marginStyle}>
-        Default
-      </div>
-      <div type="danger" style={marginStyle}>
-        Danger
-      </div>
-      <div type="warning" style={marginStyle}>
-        Warning
-      </div>
-      <div type="success" style={marginStyle}>
-        Success
-      </div>
+      <Button plain type="primary">Plain</Button>
+      <Button plain type="info">Plain</Button>
     </>
   )
 }
-export default Demo2
+export default Demo1

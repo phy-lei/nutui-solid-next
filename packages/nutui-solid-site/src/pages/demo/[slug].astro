@@ -1,27 +1,5 @@
 ---
 import MobileLayout from '@/layouts/MobileLayout.astro';
-import Dymaic from '@/components/Dymaic';
-
-// 1. 为每个集合条目生成一个新路径
-// const components = await import('../../../../nutui-solid/**/demos/*/*.tsx');
-const components = await Astro.glob(
-  `../../../../nutui-solid/src/components/button/demos/h5/demo1.tsx`
-);
-
-console.log(
-  '%c [ components ]',
-  'font-size:13px; background:pink; color:#bf2c9f;',
-  components
-);
 ---
 
-<MobileLayout title="Welcome to Astro.">
-  {
-    components.map((component) => (
-      <div>
-        <Dymaic client:load component={component.default} />
-        {/* <component.default  /> */}
-      </div>
-    ))
-  }
-</MobileLayout>
+<MobileLayout title="Welcome to Astro."> 123 </MobileLayout>

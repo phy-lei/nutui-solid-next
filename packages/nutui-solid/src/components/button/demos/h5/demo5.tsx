@@ -1,26 +1,20 @@
+import { createSignal } from 'solid-js'
+import { Button } from 'nutui-solid'
+
 const Demo5 = () => {
-  const marginStyle = { margin: '8px' }
+  const [isLoading, setIsLoading] = createSignal(false)
+  const onChange = () => {
+    setIsLoading(true)
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 3000)
+  }
   return (
-    <div>
-      <div type="primary" style={marginStyle} onClick={() => console.log(123123)}>
-        Primary
-      </div>
-      <div type="info" style={marginStyle}>
-        Info
-      </div>
-      <div type="default" style={marginStyle}>
-        Default
-      </div>
-      <div type="danger" style={marginStyle}>
-        Danger
-      </div>
-      <div type="warning" style={marginStyle}>
-        Warning
-      </div>
-      <div type="success" style={marginStyle}>
-        Success
-      </div>
-    </div>
+    <>
+      <Button loading type="info"></Button>
+      <Button loading type="warning">Loading...</Button>
+      <Button loading={isLoading()} type="success" onClick={onChange}>Click me!</Button>
+    </>
   )
 }
 export default Demo5

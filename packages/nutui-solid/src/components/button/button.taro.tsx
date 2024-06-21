@@ -1,15 +1,5 @@
-import React, { CSSProperties, useCallback } from 'react'
-import type { MouseEvent } from 'react'
-import classNames from 'classnames'
-import { ButtonProps as MiniProgramButtonProps } from '@tarojs/components'
-import { Loading } from '@nutui/icons-react-taro'
-import { getEnv } from '@tarojs/taro'
-import { BasicComponent, ComponentDefaults } from '@/utils/typings'
-
-type OmitMiniProgramButtonProps = Omit<
-  MiniProgramButtonProps,
-  'size' | 'type' | 'onClick' | 'style'
->
+import { mergeProps, splitProps, Show, createMemo } from 'solid-js'
+import { type Component, type JSX } from 'solid-js'
 
 export type ButtonType =
   | 'default'
@@ -22,126 +12,248 @@ export type ButtonSize = 'xlarge' | 'large' | 'normal' | 'small' | 'mini'
 export type ButtonShape = 'square' | 'round'
 export type ButtonFill = 'solid' | 'outline' | 'dashed' | 'none'
 
-export interface ButtonProps
-  extends BasicComponent,
-    OmitMiniProgramButtonProps {
+export interface ButtonProps extends JSX.HTMLAttributes<HTMLDivElement> {
   color: string
   shape: ButtonShape
-  type: ButtonType
-  size: ButtonSize
-  fill: ButtonFill
-  block: boolean
+  plain: boolean
   loading: boolean
   disabled: boolean
-  icon: React.ReactNode
-  rightIcon: React.ReactNode
-  onClick: (e: MouseEvent<HTMLButtonElement>) => void
+  type: ButtonType
+  size: ButtonSize
+  block: boolean
+  icon: JSX.Element
 }
 
-const prefixCls = 'nut-button'
 
-const defaultProps = {
-  ...ComponentDefaults,
+const defaultProps: ButtonProps = {
   color: '',
-  type: 'default',
-  size: 'normal',
   shape: 'round',
-  fill: 'outline',
+  plain: false,
   loading: false,
   disabled: false,
+  type: 'default',
+  size: 'normal',
   block: false,
-  icon: null,
-  rightIcon: null,
-  onClick: (e: MouseEvent<HTMLButtonElement>) => {},
-} as ButtonProps
-export const Button = React.forwardRef<HTMLButtonElement, Partial<ButtonProps>>(
-  (props, ref) => {
-    const {
-      color,
-      shape,
-      fill,
-      loading,
-      disabled,
-      type,
-      size,
-      block,
-      icon,
-      rightIcon,
-      children,
-      className,
-      style,
-      onClick,
-      ...rest
-    } = {
-      ...defaultProps,
-      ...props,
-    }
-    const getStyle = useCallback(() => {
-      const style: CSSProperties = {}
-      if (props.color) {
-        if (props.fill === 'outline' || props.fill === 'dashed') {
-          style.color = color
-          if (!color?.includes('gradient')) {
-            style.borderColor = color
-          }
-        } else {
-          style.color = '#fff'
-          style.background = color
-          style.borderColor = 'transparent'
-        }
-      }
-      return style
-    }, [color])
+    icon: null
+}
 
-    const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-      if (!loading && !disabled && onClick) {
-        onClick(e)
+export const Button: Component<Partial<ButtonProps>> = (props) => {
+  const merged = mergeProps(defaultProps, props)
+    const [local, rest] = splitProps(merged, [
+    'color',
+    'shape',
+    'plain',
+    'loading',
+    'disabled',
+    'icon',
+    'type',
+    'size',
+    'block',
+    'children',
+    'class',
+    'style',
+    'onClick',
+    'ref',
+  ])
+
+  const getStyle = createMemo(() => {
+    let style: JSX.CSSProperties = {}
+    if (local.color) {
+      style = {
+        color: local.plain ? local.color : '#fff',
+        background: local.plain ? '#fff' : `border-box ${local.color}`
+      }
+      if (local.color.includes('gradient')) {
+        style['border-color'] = 'transparent'
+      } else {
+        style['border-color'] = local.color
       }
     }
-    if (getEnv() === 'WEB') {
-      ;(rest as any).type = rest.formType
+    return style
+  })
+
+  const handleClick: JSX.EventHandler<HTMLDivElement, MouseEvent> = (e) => {
+    if (!local.loading && !local.disabled && local.onClick) {
+      if (typeof local.onClick === 'function') {
+        local.onClick(e)
+      }
     }
-    return (
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      // eslint-disable-next-line react/button-has-type
-      <button
-        {...rest}
-        ref={ref}
-        className={classNames(
-          prefixCls,
-          `${prefixCls}-${type}`,
-          props.fill ? `${prefixCls}-${fill}` : null,
-          children ? '' : `${prefixCls}-icononly`,
-          {
-            [`${prefixCls}-${size}`]: size,
-            [`${prefixCls}-${shape}`]: shape,
-            [`${prefixCls}-block`]: block,
-            [`${prefixCls}-disabled`]: disabled || loading,
-            [`${prefixCls}-loading`]: loading,
-          },
-          className
-        )}
-        style={{ ...getStyle(), ...style }}
-        onClick={(e) => handleClick(e)}
-      >
-        <div className="nut-button-wrap">
-          {loading && <Loading className="nut-icon-loading" />}
-          {!loading && icon ? icon : null}
-          {children && (
-            <div
-              className={`${icon || loading ? 'nut-button-text' : ''}${
-                rightIcon ? ' nut-button-text right' : ''
-              }`}
-            >
-              {children}
-            </div>
-          )}
-          {rightIcon || null}
-        </div>
-      </button>
-    )
   }
-)
 
-Button.displayName = 'NutButton'
+  const classes = createMemo(() => {
+    const prefixCls = 'nut-button'
+    return {
+      [prefixCls]: true,
+      [`${prefixCls}--${local.type}`]: !!local.type,
+      [`${prefixCls}--${local.size}`]: !!local.size,
+      [`${prefixCls}--${local.shape}`]: !!local.shape,
+      [`${prefixCls}--plain`]: local.plain,
+      [`${prefixCls}--block`]: local.block,
+      [`${prefixCls}--disabled`]: local.disabled,
+      [`${prefixCls}--loading`]: local.loading
+    }
+  })
+
+  return (
+    <div
+      {...rest}
+      ref={local.ref}
+      classList={classes()}
+      style={getStyle()}
+      onClick={handleClick}
+    >
+      <div class="nut-button-wrap">
+        <Show when={local.loading} fallback={null}>
+          {/* Loading Component */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="12" cy="2" r="0" fill="#ffa200">
+              <animate
+                attributeName="r"
+                begin="0"
+                calcMode="spline"
+                dur="1s"
+                keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+                repeatCount="indefinite"
+                values="0;2;0;0"
+              />
+            </circle>
+            <circle
+              cx="12"
+              cy="2"
+              r="0"
+              fill="#ffa200"
+              transform="rotate(45 12 12)"
+            >
+              <animate
+                attributeName="r"
+                begin="0.125s"
+                calcMode="spline"
+                dur="1s"
+                keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+                repeatCount="indefinite"
+                values="0;2;0;0"
+              />
+            </circle>
+            <circle
+              cx="12"
+              cy="2"
+              r="0"
+              fill="#ffa200"
+              transform="rotate(90 12 12)"
+            >
+              <animate
+                attributeName="r"
+                begin="0.25s"
+                calcMode="spline"
+                dur="1s"
+                keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+                repeatCount="indefinite"
+                values="0;2;0;0"
+              />
+            </circle>
+            <circle
+              cx="12"
+              cy="2"
+              r="0"
+              fill="#ffa200"
+              transform="rotate(135 12 12)"
+            >
+              <animate
+                attributeName="r"
+                begin="0.375s"
+                calcMode="spline"
+                dur="1s"
+                keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+                repeatCount="indefinite"
+                values="0;2;0;0"
+              />
+            </circle>
+            <circle
+              cx="12"
+              cy="2"
+              r="0"
+              fill="#ffa200"
+              transform="rotate(180 12 12)"
+            >
+              <animate
+                attributeName="r"
+                begin="0.5s"
+                calcMode="spline"
+                dur="1s"
+                keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+                repeatCount="indefinite"
+                values="0;2;0;0"
+              />
+            </circle>
+            <circle
+              cx="12"
+              cy="2"
+              r="0"
+              fill="#ffa200"
+              transform="rotate(225 12 12)"
+            >
+              <animate
+                attributeName="r"
+                begin="0.625s"
+                calcMode="spline"
+                dur="1s"
+                keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+                repeatCount="indefinite"
+                values="0;2;0;0"
+              />
+            </circle>
+            <circle
+              cx="12"
+              cy="2"
+              r="0"
+              fill="#ffa200"
+              transform="rotate(270 12 12)"
+            >
+              <animate
+                attributeName="r"
+                begin="0.75s"
+                calcMode="spline"
+                dur="1s"
+                keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+                repeatCount="indefinite"
+                values="0;2;0;0"
+              />
+            </circle>
+            <circle
+              cx="12"
+              cy="2"
+              r="0"
+              fill="#ffa200"
+              transform="rotate(315 12 12)"
+            >
+              <animate
+                attributeName="r"
+                begin="0.875s"
+                calcMode="spline"
+                dur="1s"
+                keySplines="0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8;0.2 0.2 0.4 0.8"
+                repeatCount="indefinite"
+                values="0;2;0;0"
+              />
+            </circle>
+          </svg>
+        </Show>
+        <Show when={!local.loading && local.icon} fallback={null}>
+          {local.icon}
+        </Show>
+        <Show when={local.children} fallback={null}>
+          <div
+            class={`${local.icon || local.loading ? 'nut-button__text' : ''}`}
+          >
+            {local.children}
+          </div>
+        </Show>
+      </div>
+    </div>
+  )
+}

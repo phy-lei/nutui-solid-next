@@ -1,8 +1,4 @@
 ---
-interface Props {
-  title: string;
-}
-
 import '../assets/styles/reset.scss';
 import '../assets/styles/highlight.scss';
 import '../assets/styles/md-style.scss';
@@ -21,7 +17,7 @@ const { title } = Astro.params;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <title>NutUI - 移动端 solid 组件库 | {title}</title>
   </head>
   <body>
     <div class="doc-header doc-header-red">

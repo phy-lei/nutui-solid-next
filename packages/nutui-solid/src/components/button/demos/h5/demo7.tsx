@@ -1,26 +1,13 @@
+import { Button } from 'nutui-solid'
+
 const Demo7 = () => {
-  const marginStyle = { margin: '8px' }
   return (
-    <div>
-      <div type="primary" style={marginStyle} onClick={() => console.log(123123)}>
-        Primary
-      </div>
-      <div type="info" style={marginStyle}>
-        Info
-      </div>
-      <div type="default" style={marginStyle}>
-        Default
-      </div>
-      <div type="danger" style={marginStyle}>
-        Danger
-      </div>
-      <div type="warning" style={marginStyle}>
-        Warning
-      </div>
-      <div type="success" style={marginStyle}>
-        Success
-      </div>
-    </div>
+    <>
+      <Button size="large" type="primary">Large</Button>
+      <Button type="primary">Normal</Button>
+      <Button size="small" type="primary">Small</Button>
+      <Button size="mini" type="primary">Mini</Button>
+    </>
   )
 }
 export default Demo7
