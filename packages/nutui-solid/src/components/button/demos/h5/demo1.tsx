@@ -1,6 +1,6 @@
 import { Button } from 'nutui-solid'
 
-const Demo1 = () => {
+function Demo1() {
   return (
     <>
       <Button type="primary">

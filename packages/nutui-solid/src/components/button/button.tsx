@@ -1,4 +1,4 @@
-import { mergeProps, splitProps, Show, createMemo } from 'solid-js'
+import { Show, createMemo, mergeProps, splitProps } from 'solid-js'
 import { type Component, type JSX } from 'solid-js'
 
 export type ButtonType =
@@ -24,7 +24,6 @@ export interface ButtonProps extends JSX.HTMLAttributes<HTMLDivElement> {
   icon: JSX.Element
 }
 
-
 const defaultProps: ButtonProps = {
   color: '',
   shape: 'round',
@@ -34,7 +33,7 @@ const defaultProps: ButtonProps = {
   type: 'default',
   size: 'normal',
   block: false,
-  icon: null
+  icon: null,
 }
 
 export const Button: Component<Partial<ButtonProps>> = (props) => {
@@ -61,11 +60,12 @@ export const Button: Component<Partial<ButtonProps>> = (props) => {
     if (local.color) {
       style = {
         color: local.plain ? local.color : '#fff',
-        background: local.plain ? '#fff' : `border-box ${local.color}`
+        background: local.plain ? '#fff' : `border-box ${local.color}`,
       }
       if (local.color.includes('gradient')) {
         style['border-color'] = 'transparent'
-      } else {
+      }
+      else {
         style['border-color'] = local.color
       }
     }
@@ -90,7 +90,7 @@ export const Button: Component<Partial<ButtonProps>> = (props) => {
       [`${prefixCls}--plain`]: local.plain,
       [`${prefixCls}--block`]: local.block,
       [`${prefixCls}--disabled`]: local.disabled,
-      [`${prefixCls}--loading`]: local.loading
+      [`${prefixCls}--loading`]: local.loading,
     }
   })
 

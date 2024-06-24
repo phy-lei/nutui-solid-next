@@ -1,6 +1,6 @@
 import { Button } from 'nutui-solid'
 
-const Demo7 = () => {
+function Demo7() {
   return (
     <>
       <Button size="large" type="primary">Large</Button>

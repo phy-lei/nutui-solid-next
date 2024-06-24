@@ -1,15 +1,15 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": ".",
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "types": ["vite-plugin-pwa/info"],
+    "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
       "nutui-solid": ["./dist"]
     },
     "resolveJsonModule": true,
+    "types": ["vite-plugin-pwa/info"],
     "esModuleInterop": true
   },
   "include": ["**/*.ts", "**/*.tsx"]

@@ -1,9 +1,9 @@
-import { createSignal, onMount, onCleanup, For, Show } from 'solid-js'
+import { For, Show, createSignal, onCleanup, onMount } from 'solid-js'
 import { nav } from '~/config.json'
 import './nav.scss'
 import useLocale from '@/assets/locale/uselocale'
 
-const Nav = () => {
+function Nav() {
   const [cNav] = createSignal<any>(nav)
   const [lang] = useLocale()
   const [fixed, setFixed] = createSignal(false)
@@ -12,7 +12,8 @@ const Nav = () => {
     const top = document.documentElement.scrollTop
     if (top > 64) {
       setFixed(true)
-    } else {
+    }
+    else {
       setFixed(false)
     }
   }
@@ -28,17 +29,18 @@ const Nav = () => {
     <div class={`doc-nav ${fixed() ? 'fixed' : ''}`}>
       <ol>
         <For each={cNav()}>
-          {(cn) =>
+          {cn => (
             <>
               <Show when={cn.enName !== 'dentry1'}>
                 <li>{lang() === 'zh-CN' ? cn.name : cn.enName}</li>
               </Show>
 
-               <ul>
+              <ul>
                 <For each={cn.packages}>
                   {
                     (cp) => {
-                      if (!cp.show) return null
+                      if (!cp.show)
+                        return null
                       return (
                         <a
                           // class={({ isActive, isPending }) =>
@@ -47,33 +49,36 @@ const Nav = () => {
                           href={`${lang() ? `/${lang()}` : ''}/component/${cp.name}`}
                         >
                           <li>
-                            {cp.name}&nbsp;&nbsp;
+                            {cp.name}
+&nbsp;&nbsp;
                             <b>{lang() === 'zh-CN' && cp.cName}</b>
-                            {cp.version !== '2.0.0' ? (
-                              <b
-                                style={{
-                                  background: 'rgb(250, 205, 205)',
-                                  padding: '0px 5px',
-                                  'border-radius': '5px',
-                                  color: 'rgb(255, 255, 255)',
-                                  transform: 'scale(0.8)',
-                                  height: '20px',
-                                  'line-height': '20px',
-                                  display: 'inline-block',
-                                }}
-                              >
-                                🛠
-                              </b>
-                            ) : null}
+                            {cp.version !== '2.0.0'
+                              ? (
+                                <b
+                                  style={{
+                                    'background': 'rgb(250, 205, 205)',
+                                    'padding': '0px 5px',
+                                    'border-radius': '5px',
+                                    'color': 'rgb(255, 255, 255)',
+                                    'transform': 'scale(0.8)',
+                                    'height': '20px',
+                                    'line-height': '20px',
+                                    'display': 'inline-block',
+                                  }}
+                                >
+                                  🛠
+                                </b>
+                                )
+                              : null}
                           </li>
                         </a>
                       )
                     }
                   }
                 </For>
-               </ul>
-             </>
-            }
+              </ul>
+            </>
+          )}
         </For>
 
       </ol>

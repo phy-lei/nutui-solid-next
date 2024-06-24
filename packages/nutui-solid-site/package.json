@@ -14,7 +14,6 @@
     "@astrojs/mdx": "^3.1.0",
     "@astrojs/solid-js": "^4.3.0",
     "astro": "^4.10.2",
-    "highlight.js": "^11.9.0",
     "lzutf8": "^0.6.3",
     "remark-directive": "^3.0.0",
     "remark-gfm": "^4.0.0",

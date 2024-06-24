@@ -1,6 +1,6 @@
 import { Button } from 'nutui-solid'
 
-const Demo9 = () => {
+function Demo9() {
   return (
     <>
       <Button color="#7232dd">Pure</Button>

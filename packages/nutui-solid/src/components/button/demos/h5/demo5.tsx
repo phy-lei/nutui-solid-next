@@ -1,7 +1,7 @@
 import { createSignal } from 'solid-js'
 import { Button } from 'nutui-solid'
 
-const Demo5 = () => {
+function Demo5() {
   const [isLoading, setIsLoading] = createSignal(false)
   const onChange = () => {
     setIsLoading(true)
@@ -11,7 +11,7 @@ const Demo5 = () => {
   }
   return (
     <>
-      <Button loading type="info"></Button>
+      <Button loading type="info" />
       <Button loading type="warning">Loading...</Button>
       <Button loading={isLoading()} type="success" onClick={onChange}>Click me!</Button>
     </>

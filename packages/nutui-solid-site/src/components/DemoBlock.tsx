@@ -1,6 +1,6 @@
 import { createEffect, createSignal } from 'solid-js'
-import { compressText, copyCodeHtml } from '@/utils'
 import { type Component, type JSX } from 'solid-js'
+import { compressText, copyCodeHtml } from '@/utils'
 
 interface A {
   text: string
@@ -28,7 +28,7 @@ ReactDOM.render(
     const sourceScss = compressText(props.scss || '')
     const onlineUrl = `https://codehouse.jd.com/?source=share&type=react&mainJs=${sourceMainReactJs}&appValue=${sourceReactJs}&scssValue=${sourceScss}`
     setOnlineUrl(onlineUrl)
-  }, [])
+  })
 
   const copyCode = () => {
     const sourceValue = props.text
@@ -38,7 +38,7 @@ ReactDOM.render(
   }
 
   return (
-    <div class='online-code'>
+    <div class="online-code">
       {props.children}
       <div class="online-part">
         <a class="list" target="_blank" href={onlineUrl()} rel="noreferrer">

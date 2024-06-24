@@ -1,4 +1,4 @@
-const Demo2 = () => {
+function Demo2() {
   const marginStyle = { margin: '8px' }
   return (
     <>

@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 // const target = process.argv[2]
-const config = require('../../config.json')
-const path = require('path')
+const path = require('node:path')
 const fs = require('fs-extra')
 const sass = require('sass')
+const config = require('../../config.json')
 
 let sassFileStr = ``
 let tasks = []
@@ -12,7 +12,7 @@ let tasks = []
 // }
 config.nav.map((item) => {
   item.packages.forEach((element) => {
-    let folderName = element.name.toLowerCase()
+    const folderName = element.name.toLowerCase()
     if (element.exclude != true) {
       sassFileStr += `@import '../src/components/${folderName}/index.scss';\n`
     }
@@ -20,11 +20,11 @@ config.nav.map((item) => {
       fs
         .copy(
           path.resolve(__dirname, `../src/components/${folderName}/index.scss`),
-          path.resolve(__dirname, `../dist/packages/${folderName}/index.scss`)
+          path.resolve(__dirname, `../dist/packages/${folderName}/index.scss`),
         )
         .catch((error) => {
           console.error(error)
-        })
+        }),
     )
   })
 })
@@ -34,19 +34,19 @@ tasks.push(fs.copy(path.resolve(__dirname, '../src/styles'), path.resolve(__dirn
 const themesEnum = {
   jdt: 'variables-jdt',
   jdb: 'variables-jdb',
-  jddkh: 'variables-jddkh'
+  jddkh: 'variables-jddkh',
 }
 
 // 将scss文件额外转换一份css
-const sassTocss = () => {
-  let sassTocssTasks = []
+function sassTocss() {
+  const sassTocssTasks = []
   config.nav.map((item) => {
     item.packages.forEach((element) => {
-      let folderName = element.name.toLowerCase()
+      const folderName = element.name.toLowerCase()
 
       try {
         const filePath = path.resolve(__dirname, `../dist/packages/${folderName}/main.scss`)
-        console.log("lujing", process.env.PWD,filePath)
+        console.log('lujing', process.env.PWD, filePath)
         sassTocssTasks.push(
           // 写入main.scss，引入变量文件variables.scss和组件样式index.scss
           fs.outputFile(
@@ -54,7 +54,8 @@ const sassTocss = () => {
             `@import '../../styles/variables.scss';\n@import './index.scss';\n`,
             'utf8',
             (error) => {
-              if (error) return console.error(error)
+              if (error)
+                return console.error(error)
               try {
                 // 编译sass为css
                 const result = sass.compile(filePath, { style: 'compressed' })
@@ -66,16 +67,19 @@ const sassTocss = () => {
                   result.css,
                   'utf8',
                   (error) => {
-                    if (error) return console.log(error)
-                  }
+                    if (error)
+                      return console.log(error)
+                  },
                 )
-              } catch (err) {
+              }
+              catch (err) {
                 console.error(err)
               }
-            }
-          )
+            },
+          ),
         )
-      } catch (err) {
+      }
+      catch (err) {
         console.error(err)
       }
     })
@@ -86,7 +90,7 @@ const sassTocss = () => {
 }
 
 // 解析scss文件，生成css变量
-const parseFile = (filename, theme = 'default') => {
+function parseFile(filename, theme = 'default') {
   return fs.readFile(filename, 'utf-8', (err, data) => {
     if (err) {
       console.error(`无法读取文件: ${err}`)
@@ -114,22 +118,24 @@ const parseFile = (filename, theme = 'default') => {
     const base = theme === 'default' ? 'base' : `base-${theme}`
     const filePath = path.resolve(__dirname, `../dist/styles/${base}.scss`)
     fs.outputFile(filePath, fileContent, 'utf8', (error) => {
-      if (error) return console.error(error)
+      if (error)
+        return console.error(error)
       // 编译sass为css
       const result = sass.compile(filePath, { style: 'compressed' })
       // base.scss
       fs.unlinkSync(filePath)
       // 写入index.css
       fs.outputFile(path.resolve(__dirname, `../dist/styles/${base}.css`), result.css, 'utf8', (error) => {
-        if (error) return console.log(error)
+        if (error)
+          return console.log(error)
       })
     })
   })
 }
 
 // 循环themesEnum，生成不同的css变量主题
-const variablesResolver = () => {
-  let variablesResolverTasks = []
+function variablesResolver() {
+  const variablesResolverTasks = []
   Object.keys(themesEnum).forEach((theme) => {
     variablesResolverTasks.push(parseFile(path.resolve(__dirname, `../dist/styles/${themesEnum[theme]}.scss`), theme))
   })
@@ -139,11 +145,11 @@ const variablesResolver = () => {
 }
 
 Promise.all(tasks).then(() => {
-  let themes = [
+  const themes = [
     { file: 'default.scss', sourcePath: `@import '../variables.scss';` },
     { file: 'jdt.scss', sourcePath: `@import '../variables-jdt.scss';` },
     { file: 'jdb.scss', sourcePath: `@import '../variables-jdb.scss';` },
-    { file: 'jddkh.scss', sourcePath: `@import '../variables-jddkh.scss';` }
+    { file: 'jddkh.scss', sourcePath: `@import '../variables-jddkh.scss';` },
   ]
   tasks = []
   themes.forEach((item) => {
@@ -153,9 +159,10 @@ Promise.all(tasks).then(() => {
         `${item.sourcePath}\n${sassFileStr}`,
         'utf8',
         (error) => {
-          if (error) return console.error(error)
-        }
-      )
+          if (error)
+            return console.error(error)
+        },
+      ),
     )
   })
   Promise.all(tasks).then(() => {
