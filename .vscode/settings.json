@@ -8,5 +8,6 @@
     "overrideConfigFile": "eslint.config.js" // 指定项目根目录中的eslint配置文件
   },
   "editor.formatOnSave": true,
-  "eslint.format.enable": true
+  "eslint.format.enable": true,
+  "prettier.enable": false,
 }
