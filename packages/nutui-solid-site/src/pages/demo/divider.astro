@@ -1,0 +1,55 @@
+---
+import MobileLayout from '@/layouts/MobileLayout.astro';
+import Demo from '@/components/Demo.astro';
+import Demo1 from '~/nutui-solid/src/components/divider/demos/demo1';
+import Demo2 from '~/nutui-solid/src/components/divider/demos/demo2';
+import Demo3 from '~/nutui-solid/src/components/divider/demos/demo3';
+import Demo4 from '~/nutui-solid/src/components/divider/demos/demo4';
+import Demo5 from '~/nutui-solid/src/components/divider/demos/demo5';
+import Demo6 from '~/nutui-solid/src/components/divider/demos/demo6';
+
+const useTranslate = (obj) => {
+  return [obj['zh-CN']];
+};
+
+const [translated] = useTranslate({
+  'zh-CN': {
+    basic: '基础用法',
+    text: '展示文本',
+    position: '内容位置',
+    dashed: '虚线',
+    custom: '自定义样式',
+    vertical: '垂直分割线',
+  },
+  'en-US': {
+    basic: 'Basic Usage',
+    text: 'With Text',
+    position: 'Content Position',
+    dashed: 'Dashed',
+    custom: 'Custom Style',
+    vertical: 'Vertical Divider',
+  },
+});
+---
+
+<MobileLayout>
+  <Demo class="demo-button">
+    <h2>{translated.basic}</h2>
+    <Demo1 client:only="client" />
+
+    <h2>{translated.text}</h2>
+    <Demo2 client:only="client" />
+
+    <h2>{translated.position}</h2>
+    <Demo3 client:only="client" />
+
+    <h2>{translated.dashed}</h2>
+    <Demo4 client:only="client" />
+
+    <h2>{translated.custom}</h2>
+    <Demo5 client:only="client" />
+
+    <h2>{translated.vertical}</h2>
+    <Demo6 client:only="client" />
+  </Demo>
+</MobileLayout>

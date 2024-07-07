@@ -34,6 +34,10 @@ importers:
         specifier: ^7.10.0
         version: 7.13.0(eslint@9.4.0)(typescript@5.4.5)
 
+  packages/icons-solid: {}
+
+  packages/icons-solid-taro: {}
+
   packages/nutui-solid:
     dependencies:
       classnames:
