@@ -1,1 +1,1 @@
-declare module 'nutui-solid'
+// declare module 'nutui-solid'

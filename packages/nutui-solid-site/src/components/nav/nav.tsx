@@ -3,6 +3,10 @@ import { nav } from '~/config.json'
 import './nav.scss'
 import useLocale from '@/assets/locale/uselocale'
 
+function firstLetterToLower(str: string) {
+  return str.charAt(0).toLocaleLowerCase() + str.slice(1)
+}
+
 function Nav() {
   const [cNav] = createSignal<any>(nav)
   const [lang] = useLocale()
@@ -46,7 +50,7 @@ function Nav() {
                           // class={({ isActive, isPending }) =>
                           //   isPending ? '' : isActive ? 'selected' : ''
                           // }
-                          href={`${lang() ? `/${lang()}` : ''}/component/${cp.name}`}
+                          href={`${lang() ? `/${lang()}` : ''}/${firstLetterToLower(cp.name)}`}
                         >
                           <li>
                             {cp.name}

@@ -12,7 +12,7 @@ export type ButtonSize = 'xlarge' | 'large' | 'normal' | 'small' | 'mini'
 export type ButtonShape = 'square' | 'round'
 export type ButtonFill = 'solid' | 'outline' | 'dashed' | 'none'
 
-export interface ButtonProps extends JSX.HTMLAttributes<HTMLDivElement> {
+export type ButtonProps = JSX.HTMLAttributes<HTMLDivElement> & Partial<{
   color: string
   shape: ButtonShape
   plain: boolean
@@ -22,7 +22,7 @@ export interface ButtonProps extends JSX.HTMLAttributes<HTMLDivElement> {
   size: ButtonSize
   block: boolean
   icon: JSX.Element
-}
+}>
 
 const defaultProps: ButtonProps = {
   color: '',
@@ -36,7 +36,7 @@ const defaultProps: ButtonProps = {
   icon: null,
 }
 
-export const Button: Component<Partial<ButtonProps>> = (props) => {
+export const Button: Component<ButtonProps> = (props) => {
   const merged = mergeProps(defaultProps, props)
   const [local, rest] = splitProps(merged, [
     'color',

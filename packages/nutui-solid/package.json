@@ -13,7 +13,10 @@
   ],
   "scripts": {
     "generate:themes": "node scripts/generate-themes.cjs",
+    "dev": "pnpm dev-components && pnpm dev-css",
     "build": "pnpm build-components && pnpm build-css",
+    "dev-components": "vite dev",
+    "dev-css": "pnpm generate:themes && vite dev -c vite.config.build.css.ts",
     "build-components": "vite build",
     "build-css": "pnpm generate:themes && vite build -c vite.config.build.css.ts"
   },
