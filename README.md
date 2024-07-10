@@ -111,7 +111,4 @@
 pnpm i
 pnpm run dev
 ```
-每次修改了组件后，需要手动build下组件库
-```bash
-pnpm run build-ui
-```
+> 即使修改了组件的代码，也会热更运行打包运行，不用手动build components
