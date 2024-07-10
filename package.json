@@ -8,9 +8,9 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm dev-ui && pnpm --filter nutui-solid-site run dev",
+    "dev": "pnpm dev-ui & pnpm --filter nutui-solid-site run dev",
     "build": "pnpm build-ui && pnpm --filter nutui-solid-site run build",
-    "dev-ui": "pnpm --filter nutui-solid run build",
+    "dev-ui": "pnpm --filter nutui-solid run dev",
     "build-ui": "pnpm --filter nutui-solid run build",
     "lint": "eslint --cache .",
     "lint:fix": "pnpm lint --fix"
