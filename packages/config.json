@@ -59,7 +59,7 @@
       "enName": "base",
       "packages": [
         {
-          "version": "2.0.0",
+          "version": "1.0.0",
           "name": "Button",
           "type": "component",
           "cName": "按钮",
@@ -67,7 +67,7 @@
           "sort": 1,
           "show": true,
           "taro": true,
-          "author": ""
+          "author": "phy-lei"
         }
       ]
     },
@@ -76,7 +76,7 @@
       "enName": "layout",
       "packages": [
         {
-          "version": "2.0.0",
+          "version": "1.0.0",
           "name": "Divider",
           "type": "component",
           "cName": "分割线",
@@ -84,7 +84,7 @@
           "sort": 1,
           "show": true,
           "taro": true,
-          "author": ""
+          "author": "yisumay"
         }
       ]
     },

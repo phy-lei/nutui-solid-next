@@ -4,6 +4,7 @@ import fse from 'fs-extra'
 import path from 'path'
 import config from './package.json'
 import solidPlugin from './plugin/vite-plugin-solid'
+import autoprefixer from 'autoprefixer'
 
 const banner = `/*!
 * ${config.name} v${config.version} ${new Date()}
@@ -22,6 +23,22 @@ if (projectID) {
 export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: resolve(__dirname, './src') }],
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        // example : additionalData: `@import "./src/design/styles/variables";`
+        // dont need include file extend .scss
+        additionalData: fileStr
+      }
+    },
+    postcss: {
+      plugins: [
+        autoprefixer({
+          overrideBrowserslist: ['> 0.5%', 'last 2 versions', 'ie > 11', 'iOS >= 10', 'Android >= 5']
+        })
+      ]
+    }
   },
   plugins: [
     solidPlugin(),

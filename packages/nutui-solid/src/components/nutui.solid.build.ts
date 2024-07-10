@@ -1,7 +1,10 @@
-import Button from '@/components/button';
-export * from '@/components/button';
-import Divider from '@/components/divider';
-export * from '@/components/divider';
+import Button from './button';
+export * from './button';
+import Divider from './divider';
+export * from './divider';
 
+
+import './button/index.scss';
+import './divider/index.scss';
 
 export { Button, Divider };

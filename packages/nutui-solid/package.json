@@ -12,6 +12,7 @@
     "dist"
   ],
   "scripts": {
+    "prepare": "node scripts/generate-nutui.cjs",
     "generate:themes": "node scripts/generate-themes.cjs",
     "dev": "pnpm dev-components && pnpm dev-css",
     "build": "pnpm build-components && pnpm build-css",
@@ -29,6 +30,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@types/babel__core": "^7.20.4",
     "@types/jest": "^29.5.11",
+    "autoprefixer": "^10.4.19",
     "babel-loader": "^9.1.3",
     "babel-plugin-transform-solid-jsx": "4.0.0-beta.85",
     "fs-extra": "^11.2.0",
