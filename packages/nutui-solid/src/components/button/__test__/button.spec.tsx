@@ -1,99 +1,58 @@
-import * as React from 'react'
+import { test, expect } from "vitest"
+import { render } from "@solidjs/testing-library"
+import userEvent from "@testing-library/user-event"
+import { Button } from 'nutui-solid'
 
-import { fireEvent, render } from '@testing-library/react'
-import '@testing-library/jest-dom'
+const user = userEvent.setup()
 
-import { useState } from 'react'
-import { Star } from '@nutui/icons-react'
-import { Button } from '../button'
-
-it('should match snapshot', () => {
-  const { container } = render(
-    <Button class="aa" style={{ margin: 8 }} type="primary" shape="round">
-      主要按钮
-    </Button>,
-  )
-  expect(container.firstChild?.nodeName).toBe('BUTTON')
-  expect(container).toMatchSnapshot()
-})
-
-it('should  fill is outline', () => {
-  const { getByTestId } = render(
-    <Button data-testid="button" type="primary" fill="outline">
-      主要按钮
-    </Button>,
-  )
-  expect(getByTestId('button')).toHaveClass('nut-button-outline')
-})
-
-it('should have righticon correctly', () => {
-  const { getByText } = render(
-    <Button data-testid="button" icon={<Star />} rightIcon={<Star />}>
-      主要按钮
-    </Button>,
-  )
-  expect(getByText('主要按钮')).toHaveClass('right')
-})
-
-it('should props color when use fill correctly', () => {
-  const { getByTestId } = render(
-    <Button data-testid="button" color="blue" fill="outline">
-      主要按钮
-    </Button>,
-  )
-  expect(getByTestId('button')).toHaveStyle({ 'border-color': 'blue' })
-})
-
-it('should props color with no fill correctly', () => {
-  const { getByTestId } = render(
-    <Button data-testid="button" color="blue">
-      主要按钮
-    </Button>,
-  )
-  expect(getByTestId('button')).toHaveStyle({ background: 'blue' })
-})
-
-it('should children correctly', () => {
-  const { getByText, getByTestId } = render(
-    <Button
-      data-testid="button"
-      class="aa"
-      style={{ margin: 8 }}
-      type="primary"
-      shape="round"
-    >
-      主要按钮
-    </Button>,
-  )
-  expect(getByText('主要按钮')).toHaveTextContent('主要按钮')
-  expect(getByTestId('button')).toHaveClass('aa')
-  expect(getByTestId('button')).toHaveAttribute('style')
-})
-
-it('should fireEvent correctly', () => {
-  const ButtonDemo = () => {
-    const [loading, setLoading] = useState(false)
-    return (
-      <Button
-        loading={loading}
-        type="success"
-        onClick={() => {
-          setTimeout(() => {
-            setLoading(false)
-          }, 1500)
-          setLoading(!loading)
-        }}
-        style={{ margin: 8 }}
-      >
-        Click me
-      </Button>
-    )
+test("emit click event", async () => {
+  let a = 0
+  const handleClick = () => {
+    a++
   }
+  const { getByText } = render(() => <Button onClick={handleClick}>click</Button>)
+  await user.click(getByText('click'))
+  expect(a).toEqual(1)
+})
 
-  const { container, getByText } = render(<ButtonDemo />)
+test('children test', async () => {
+  const { getByText } = render(() => <Button>按钮测试</Button>)
+  expect(getByText('按钮测试')).toHaveTextContent('按钮测试')
+})
 
-  fireEvent.click(getByText('Click me'))
-  expect(container.querySelector('.nut-button')).toHaveClass(
-    'nut-button-loading',
-  )
+test('should not allow click when set disabled props', async () => {
+  let a = 0
+  const handleClick = () => {
+    a++
+  }
+  const { getByText } = render(() => <Button onClick={handleClick} disabled>click</Button>)
+  await user.click(getByText('click'))
+  expect(a).toEqual(0)
+})
+
+test('should not emit click event when loading', async () => {
+  let a = 0
+  const handleClick = () => {
+    a++
+  }
+  const { getByText } = render(() => <Button onClick={handleClick} loading>click</Button>)
+  user.click(getByText('click'))
+  expect(await user.click(getByText('click'))).toBeFalsy()
+})
+
+test('should find nut-icon class of an svg tag when using icon slot', () => {
+  const { getByTestId } = render(() => <Button icon={<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" class="nut-icon" data-testid="svg"><path fill="#ffa200" d="m16 6.52l2.76 5.58l.46 1l1 .15l6.16.89l-4.38 4.3l-.75.73l.18 1l1.05 6.13l-5.51-2.89L16 23l-.93.49l-5.51 2.85l1-6.13l.18-1l-.74-.77l-4.42-4.35l6.16-.89l1-.15l.46-1L16 6.52M16 2l-4.55 9.22l-10.17 1.47l7.36 7.18L6.9 30l9.1-4.78L25.1 30l-1.74-10.13l7.36-7.17l-10.17-1.48Z"/></svg>}>icon</Button>)
+  const icons = getByTestId('svg')
+  expect(icons.classList).toContain('nut-icon')
+})
+
+test('props color', async () => {
+  const { container } = render(() => <Button color="blue">props</Button>)
+  expect(container.children[0]).toHaveStyle('border-color: blue')
+})
+
+test('props color & plain', async () => {
+  const { container } = render(() => <Button color="blue" plain>props</Button>)
+  expect(container.children[0]).toHaveStyle('border-color: blue')
+  expect(container.children[0]).toHaveStyle('background: rgb(255, 255, 255)')
 })

@@ -23,6 +23,7 @@ if (projectID) {
 export default defineConfig({
   resolve: {
     alias: [{ find: '@', replacement: resolve(__dirname, './src') }],
+    conditions: ["development", "browser"],
   },
   css: {
     preprocessorOptions: {
@@ -102,4 +103,14 @@ export default defineConfig({
       entry: 'src/components/nutui.solid.build.ts',
     },
   },
+  test: {
+    globals: true,
+    // environment: 'jsdom',
+    testTransformMode: { web: ['/.[jt]sx?$/'] },
+
+    coverage: {
+      all: false,
+      provider: 'v8'
+    },
+  }
 })

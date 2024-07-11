@@ -3,7 +3,7 @@ import { Button } from 'nutui-solid'
 function Demo1() {
   return (
     <>
-      <Button type="primary">
+      <Button color="blue" plain>
         Primary
       </Button>
       <Button type="info">

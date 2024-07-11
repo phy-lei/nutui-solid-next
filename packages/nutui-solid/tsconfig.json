@@ -9,7 +9,7 @@
       "nutui-solid": ["./dist"]
     },
     "resolveJsonModule": true,
-    "types": ["vite-plugin-pwa/info"],
+    "types": ["vite/client", "vitest/globals", "@testing-library/jest-dom"],
     "esModuleInterop": true
   },
   "include": ["**/*.ts", "**/*.tsx"]

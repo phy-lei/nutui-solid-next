@@ -59,8 +59,8 @@ export const Button: Component<ButtonProps> = (props) => {
     let style: JSX.CSSProperties = {}
     if (local.color) {
       style = {
-        color: local.plain ? local.color : '#fff',
-        background: local.plain ? '#fff' : `border-box ${local.color}`,
+        color: local.plain ? local.color : 'rgb(255, 255, 255)',
+        background: local.plain ? 'rgb(255, 255, 255)' : `border-box ${local.color}`,
       }
       if (local.color.includes('gradient')) {
         style['border-color'] = 'transparent'
