@@ -12,7 +12,7 @@ test("emit click event", async () => {
   }
   const { getByText } = render(() => <Button onClick={handleClick}>click</Button>)
   await user.click(getByText('click'))
-  expect(a).toEqual(0)
+  expect(a).toEqual(1)
 })
 
 test('children test', async () => {
