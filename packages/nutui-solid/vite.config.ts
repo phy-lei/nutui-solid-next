@@ -105,7 +105,7 @@ export default defineConfig({
   },
   test: {
     globals: true,
-    // environment: 'jsdom',
+    environment: 'jsdom',
     testTransformMode: { web: ['/.[jt]sx?$/'] },
 
     coverage: {
