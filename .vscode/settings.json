@@ -9,5 +9,5 @@
   },
   "editor.formatOnSave": true,
   "eslint.format.enable": true,
-  "prettier.enable": false,
+  "prettier.enable": false
 }

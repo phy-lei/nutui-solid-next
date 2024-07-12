@@ -33,7 +33,7 @@ ReactDOM.render(
   const copyCode = () => {
     const sourceValue = props.text
     copyCodeHtml(sourceValue, () => {
-      alert('复制成功')
+      // alert('复制成功')
     })
   }
 
