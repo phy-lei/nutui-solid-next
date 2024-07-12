@@ -3,6 +3,7 @@ import remarkGfm from 'remark-gfm'
 import remarkDirective from 'remark-directive'
 import solidJs from '@astrojs/solid-js'
 import mdx from '@astrojs/mdx'
+import node from '@astrojs/node'
 
 // https://astro.build/config
 export default defineConfig({
@@ -11,6 +12,7 @@ export default defineConfig({
     mdx(),
     solidJs(),
   ],
+  adapter: node({ mode: 'standalone' }),
   markdown: {
     syntaxHighlight: 'shiki',
     shikiConfig: {
