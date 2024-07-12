@@ -48,7 +48,9 @@ jobs:
         run: pnpm --filter nutui-solid test:c
 
       - name: Upload coverage reports to Codecov
+        run: ｜
+          ls
+          cd packages/nutui-solid
         uses: codecov/codecov-action@v4
         with:
-          file: ./packages/nutui-solid/coverage/clover.xml
           token: ${{ secrets.CODECOV_TOKEN }}
