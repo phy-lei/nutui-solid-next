@@ -1,4 +1,3 @@
-
 <!-- PULL REQUEST TEMPLATE -->
 <!-- (Update "[ ]" to "[x]" to check a box) -->
 
@@ -21,10 +20,10 @@
 
 **这个 PR 涉及以下平台:**
 
-- [ ] H5 
-- [ ] Taro 
+- [ ] H5
+- [ ] Taro
 
 **这个 PR 是否已自测:**
 
-- [ ] 自测 Vite 脚手架使用 
-- [ ] 自测 Taro 脚手架使用小程序 & Taro-H5 
+- [ ] 自测 Vite 脚手架使用
+- [ ] 自测 Taro 脚手架使用小程序 & Taro-H5
