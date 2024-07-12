@@ -107,7 +107,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     testTransformMode: { web: ['/.[jt]sx?$/'] },
-
+    include: ['src/components/**/*.(test|spec).(ts|tsx)'],
     coverage: {
       all: false,
       provider: 'v8'
