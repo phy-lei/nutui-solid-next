@@ -46,6 +46,7 @@ export default defineConfig({
     dts({
       outDir: 'dist/types',
       clearPureImport: false,
+      entryRoot: 'src/components',
       include: [
         "src/components/nutui.solid.build.ts",
         "src/components/**/*.ts",
