@@ -33,7 +33,7 @@ const [translated] = useTranslate({
 ---
 
 <MobileLayout>
-  <Demo class="demo-button">
+  <Demo class="demo-divider">
     <h2>{translated.basic}</h2>
     <Demo1 client:only="client" />
 
@@ -53,3 +53,9 @@ const [translated] = useTranslate({
     <Demo6 client:only="client" />
   </Demo>
 </MobileLayout>
+
+<style lang="scss" is:global>
+  .demo-divider {
+    background: #fff !important ;
+  }
+</style>

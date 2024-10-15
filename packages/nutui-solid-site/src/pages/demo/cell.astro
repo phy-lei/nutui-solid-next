@@ -1,0 +1,52 @@
+---
+import Demo from '@/components/Demo.astro';
+import MobileLayout from '@/layouts/MobileLayout.astro';
+import Basic from '~/nutui-solid/src/components/cell/demos/basic'
+import Size from '~/nutui-solid/src/components/cell/demos/size'
+import Content from '~/nutui-solid/src/components/cell/demos/content'
+import Title from '~/nutui-solid/src/components/cell/demos/title'
+import Custom from '~/nutui-solid/src/components/cell/demos/custom'
+import Align from '~/nutui-solid/src/components/cell/demos/align'
+
+
+const useTranslate = (obj) => {
+  return [obj['zh-CN']];
+};
+
+const [translated] = useTranslate({
+  'zh-CN': {
+    basic: '基础用法',
+    size: '尺寸设置 large',
+    content: '自定义内容',
+    title: '自定义标题区域',
+    // group: '自定义标题区域',
+    custom: '自定义右侧区域',
+    align: '垂直居中',
+  },
+  'en-US': {
+    basic: 'Basic Usage',
+    size: 'Size Large',
+    content: 'Customize Content',
+    title: 'Customize the title area',
+    custom: 'Customize the right area',
+    align: 'Vertical Center',
+  },
+});
+---
+
+<MobileLayout>
+  <Demo>
+    <h2>{translated.basic}</h2>
+    <Basic client:only="client" />
+    <h2>{translated.size}</h2>
+    <Size client:only="client" />
+    <h2>{translated.content}</h2>
+    <Content client:only="client" />
+    <h2>{translated.title}</h2>
+    <Title client:only="client" />
+    <h2>{translated.custom}</h2>
+    <Custom client:only="client" />
+    <h2>{translated.align}</h2>
+    <Align client:only="client" />
+  </Demo>
+</MobileLayout>
