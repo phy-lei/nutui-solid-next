@@ -7,6 +7,8 @@ import Content from '~/nutui-solid/src/components/cell/demos/content'
 import Title from '~/nutui-solid/src/components/cell/demos/title'
 import Custom from '~/nutui-solid/src/components/cell/demos/custom'
 import Align from '~/nutui-solid/src/components/cell/demos/align'
+import Group from '~/nutui-solid/src/components/cell/demos/group'
+import Link from '~/nutui-solid/src/components/cell/demos/link'
 
 
 const useTranslate = (obj) => {
@@ -19,8 +21,9 @@ const [translated] = useTranslate({
     size: '尺寸设置 large',
     content: '自定义内容',
     title: '自定义标题区域',
-    // group: '自定义标题区域',
     custom: '自定义右侧区域',
+    link: '自定义右侧链接区域',
+    group: 'CellGroup 分组用法',
     align: '垂直居中',
   },
   'en-US': {
@@ -29,6 +32,8 @@ const [translated] = useTranslate({
     content: 'Customize Content',
     title: 'Customize the title area',
     custom: 'Customize the right area',
+    link: 'Customize the link area',
+    group: 'CellGroup',
     align: 'Vertical Center',
   },
 });
@@ -46,6 +51,10 @@ const [translated] = useTranslate({
     <Title client:only="client" />
     <h2>{translated.custom}</h2>
     <Custom client:only="client" />
+    <h2>{translated.link}</h2>
+    <Link client:only="client" />
+    <h2>{translated.group}</h2>
+    <Group client:only="client" />
     <h2>{translated.align}</h2>
     <Align client:only="client" />
   </Demo>

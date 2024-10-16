@@ -1,21 +1,17 @@
-import { Component, JSX, JSXElement, ParentProps, Show, createMemo, mergeProps, splitProps } from 'solid-js'
+import { Component, JSX, ParentProps, Show, createMemo, mergeProps, splitProps } from 'solid-js'
 import { pxCheck } from '@/utils/pxCheck'
 
 export type CellSize = 'normal' | 'large'
 
-export type CellProps = JSX.HTMLAttributes<HTMLDivElement> & Partial<{
-  title: JSXElement
-  subTitle: JSXElement
-  desc: string
+export type CellProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'title'> & Partial<{
+  title: JSX.Element
+  subTitle: JSX.Element
+  desc: JSX.Element
   descTextAlign: string
   isLink: boolean
   roundRadius: string | number
   center: boolean
   size: CellSize
-  /**
-   * @deprecated It will be removed in next major version.
-   */
-  to: string | object
   /**
    * @deprecated It will be removed in next major version.
    */
@@ -51,19 +47,19 @@ export const Cell: Component<ParentProps<CellProps>> = (props) => {
     'roundRadius',
     'center',
     'size',
-    'to',
     'replace',
     'url',
     'replace',
     'link',
     'onClick',
+    'children',
   ])
 
   const classes = createMemo(() => {
     const prefixCls = 'nut-cell'
     return {
       [prefixCls]: true,
-      [`${prefixCls}--clickable`]: local.isLink || !!props.to,
+      [`${prefixCls}--clickable`]: local.isLink,
       [`${prefixCls}--center`]: local.center,
       [`${prefixCls}--large`]: local.size === 'large',
     }
@@ -71,13 +67,13 @@ export const Cell: Component<ParentProps<CellProps>> = (props) => {
 
   const baseStyle = createMemo(() => {
     return {
-      borderRadius: pxCheck(local.roundRadius),
+      'border-radius': pxCheck(local.roundRadius),
     } as JSX.CSSProperties
   })
 
   const descStyle = createMemo(() => {
     return {
-      textAlign: local.descTextAlign,
+      'text-align': local.descTextAlign,
     } as JSX.CSSProperties
   })
 
@@ -88,10 +84,18 @@ export const Cell: Component<ParentProps<CellProps>> = (props) => {
     }
   })
 
+  const handleClick: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> = (e) => {
+    if (typeof local.onClick === 'function') {
+      local.onClick(e)
+    }
+    if (props.url)
+      props.replace ? location.replace(props.url) : (location.href = props.url)
+  }
+
   return (
-    <div classList={classes()} style={baseStyle()} {...rest}>
-      {props?.children
-        ? props?.children
+    <div classList={classes()} style={baseStyle()} {...rest} onClick={handleClick}>
+      {local?.children
+        ? local?.children
         : (
             <>
               <Show when={local.title || local.subTitle}>
@@ -105,15 +109,11 @@ export const Cell: Component<ParentProps<CellProps>> = (props) => {
               <Show when={local.desc}>
                 <div classList={descClasses()} style={descStyle()}>{local.desc}</div>
               </Show>
-              {local?.link
-                ? local?.link
-                : (
-                    <Show when={local.isLink || local.to}>
-                      <div class="nut-cell__link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="#888888" d="M8.465 20.485L16.95 12L8.465 3.515L7.05 4.929L14.122 12L7.05 19.071l1.415 1.414Z" /></svg>
-                      </div>
-                    </Show>
-                  )}
+              <Show when={local.isLink || local?.link}>
+                <div class={local.isLink ? 'nut-cell__link' : ''}>
+                  {local?.link ? local?.link : <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#888888" d="M8.465 20.485L16.95 12L8.465 3.515L7.05 4.929L14.122 12L7.05 19.071l1.415 1.414Z" /></svg>}
+                </div>
+              </Show>
             </>
           )}
     </div>
