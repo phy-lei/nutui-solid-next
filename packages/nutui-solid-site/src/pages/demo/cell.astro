@@ -1,0 +1,66 @@
+---
+import Demo from '@/components/Demo.astro';
+import MobileLayout from '@/layouts/MobileLayout.astro';
+import Basic from '~/nutui-solid/src/components/cell/demos/basic'
+import Size from '~/nutui-solid/src/components/cell/demos/size'
+import Content from '~/nutui-solid/src/components/cell/demos/content'
+import Title from '~/nutui-solid/src/components/cell/demos/title'
+import Icon from '~/nutui-solid/src/components/cell/demos/icon'
+import Custom from '~/nutui-solid/src/components/cell/demos/custom'
+import Align from '~/nutui-solid/src/components/cell/demos/align'
+import Group from '~/nutui-solid/src/components/cell/demos/group'
+import Link from '~/nutui-solid/src/components/cell/demos/link'
+
+
+const useTranslate = (obj) => {
+  return [obj['zh-CN']];
+};
+
+const [translated] = useTranslate({
+  'zh-CN': {
+    basic: '基础用法',
+    size: '尺寸设置 large',
+    content: '自定义内容',
+    title: '自定义标题区域',
+    icon: '自定义左侧icon区域',
+    custom: '自定义右侧区域',
+    link: '自定义右侧链接区域',
+    group: 'CellGroup 分组用法',
+    align: '垂直居中',
+  },
+  'en-US': {
+    basic: 'Basic Usage',
+    size: 'Size Large',
+    content: 'Customize Content',
+    title: 'Customize the title area',
+    icon: 'Customize the icon',
+    custom: 'Customize the right area',
+    link: 'Customize the link area',
+    group: 'CellGroup',
+    align: 'Vertical Center',
+  },
+});
+---
+
+<MobileLayout>
+  <Demo>
+    <h2>{translated.basic}</h2>
+    <Basic client:only="client" />
+    <h2>{translated.size}</h2>
+    <Size client:only="client" />
+    <h2>{translated.content}</h2>
+    <Content client:only="client" />
+    <h2>{translated.title}</h2>
+    <Title client:only="client" />
+    <h2>{translated.icon}</h2>
+    <Icon client:only="client" />
+    <h2>{translated.custom}</h2>
+    <Custom client:only="client" />
+    <h2>{translated.link}</h2>
+    <Link client:only="client" />
+    <h2>{translated.group}</h2>
+    <Group client:only="client" />
+    <h2>{translated.align}</h2>
+    <Align client:only="client" />
+  </Demo>
+</MobileLayout>

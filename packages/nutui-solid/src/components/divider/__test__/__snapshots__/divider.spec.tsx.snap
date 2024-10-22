@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`children test 1`] = `
+<div
+  class="nut-divider nut-divider-center nut-divider-hairline"
+>
+  custom text
+</div>
+`;

@@ -68,6 +68,17 @@
           "show": true,
           "taro": true,
           "author": "phy-lei"
+        },
+        {
+          "version": "1.0.0",
+          "name": "Cell",
+          "type": "component",
+          "cName": "单元格",
+          "desc": "单元格",
+          "sort": 2,
+          "show": true,
+          "taro": true,
+          "author": "yisumay"
         }
       ]
     },

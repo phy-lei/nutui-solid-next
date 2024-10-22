@@ -3,8 +3,8 @@ import { nav } from '~/config.json'
 import './nav.scss'
 import useLocale from '@/assets/locale/uselocale'
 
-function firstLetterToLower(str: string) {
-  return str.charAt(0).toLocaleLowerCase() + str.slice(1)
+function letterToLower(str: string) {
+  return str.toLocaleLowerCase()
 }
 
 function Nav() {
@@ -50,7 +50,7 @@ function Nav() {
                           // class={({ isActive, isPending }) =>
                           //   isPending ? '' : isActive ? 'selected' : ''
                           // }
-                          href={`${lang() ? `/${lang()}` : ''}/${firstLetterToLower(cp.name)}`}
+                          href={letterToLower(`${lang() ? `/h5/${lang()}` : '/h5'}/${cp.name}`)}
                         >
                           <li>
                             {cp.name}
@@ -58,20 +58,20 @@ function Nav() {
                             <b>{lang() === 'zh-CN' && cp.cName}</b>
                             {cp.version !== '2.0.0'
                               ? (
-                                <b
-                                  style={{
-                                    'background': 'rgb(250, 205, 205)',
-                                    'padding': '0px 5px',
-                                    'border-radius': '5px',
-                                    'color': 'rgb(255, 255, 255)',
-                                    'transform': 'scale(0.8)',
-                                    'height': '20px',
-                                    'line-height': '20px',
-                                    'display': 'inline-block',
-                                  }}
-                                >
-                                  🛠
-                                </b>
+                                  <b
+                                    style={{
+                                      'background': 'rgb(250, 205, 205)',
+                                      'padding': '0px 5px',
+                                      'border-radius': '5px',
+                                      'color': 'rgb(255, 255, 255)',
+                                      'transform': 'scale(0.8)',
+                                      'height': '20px',
+                                      'line-height': '20px',
+                                      'display': 'inline-block',
+                                    }}
+                                  >
+                                    🛠
+                                  </b>
                                 )
                               : null}
                           </li>
