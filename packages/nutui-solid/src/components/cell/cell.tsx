@@ -109,13 +109,7 @@ export const Cell: Component<ParentProps<CellProps>> = (props) => {
               </Show>
               <Show when={local.title || local.subTitle}>
                 <div class="nut-cell__title">
-                  <div class="title">
-                    {local.title}
-                    <span>
-                      {local.roundRadius}
-                      111
-                    </span>
-                  </div>
+                  <div class="title">{local.title}</div>
                   <Show when={local.subTitle}>
                     <div class="nut-cell__title-desc">{ local.subTitle}</div>
                   </Show>
