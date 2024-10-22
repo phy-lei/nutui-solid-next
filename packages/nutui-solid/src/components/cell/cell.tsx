@@ -109,11 +109,15 @@ export const Cell: Component<ParentProps<CellProps>> = (props) => {
               <Show when={local.desc}>
                 <div classList={descClasses()} style={descStyle()}>{local.desc}</div>
               </Show>
-              <Show when={local.isLink || local?.link}>
-                <div class={local.isLink ? 'nut-cell__link' : ''}>
-                  {local?.link ? local?.link : <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#888888" d="M8.465 20.485L16.95 12L8.465 3.515L7.05 4.929L14.122 12L7.05 19.071l1.415 1.414Z" /></svg>}
-                </div>
-              </Show>
+              {
+                local?.link
+                  ? local?.link
+                  : (
+                      <Show when={local.isLink}>
+                        {local?.link ? local?.link : <svg xmlns="http://www.w3.org/2000/svg" data-testid="test-cell-svg" class="nut-cell__link" width="16" height="16" viewBox="0 0 24 24"><path fill="#888888" d="M8.465 20.485L16.95 12L8.465 3.515L7.05 4.929L14.122 12L7.05 19.071l1.415 1.414Z" /></svg>}
+                      </Show>
+                    )
+              }
             </>
           )}
     </div>
