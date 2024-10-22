@@ -1,7 +1,7 @@
 # todo component list
 - [x] Button
-- [ ] Cell
-- [ ] CellGroup
+- [x] Cell [@yisumay](https://github.com/yisumay)
+- [x] CellGroup [@yisumay](https://github.com/yisumay)
 - [ ] Icon
 - [ ] Overlay
 - [ ] Popup
