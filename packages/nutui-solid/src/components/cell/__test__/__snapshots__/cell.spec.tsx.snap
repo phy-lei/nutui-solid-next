@@ -1,0 +1,62 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`children test 1`] = `
+<div
+  class="nut-cell"
+>
+  Custom Content
+</div>
+`;
+
+exports[`prop isLink 1`] = `
+<div
+  class="nut-cell nut-cell--clickable"
+>
+  <svg
+    class="nut-cell__link"
+    data-testid="test-cell-svg"
+    height="16"
+    viewBox="0 0 24 24"
+    width="16"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8.465 20.485L16.95 12L8.465 3.515L7.05 4.929L14.122 12L7.05 19.071l1.415 1.414Z"
+      fill="#888888"
+    />
+  </svg>
+</div>
+`;
+
+exports[`prop link、icon test 1`] = `
+<div
+  class="nut-cell"
+>
+  <div
+    class="nut-cell__icon"
+  >
+    Custom Icon
+  </div>
+  <div
+    class="nut-cell__title"
+  >
+    <div
+      class="title"
+    >
+      标题1
+    </div>
+    <div
+      class="nut-cell__title-desc"
+    >
+      副标题1
+    </div>
+  </div>
+  <div
+    class="nut-cell__value"
+    style="text-align: right;"
+  >
+    描述1
+  </div>
+  Custom Link
+</div>
+`;
