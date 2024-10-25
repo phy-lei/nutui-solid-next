@@ -79,6 +79,17 @@
           "show": true,
           "taro": true,
           "author": "yisumay"
+        },
+        {
+          "version": "1.0.0",
+          "name": "Image",
+          "type": "component",
+          "cName": "图片",
+          "desc": "图片",
+          "sort": 2,
+          "show": true,
+          "taro": true,
+          "author": "yisumay"
         }
       ]
     },
@@ -92,6 +103,17 @@
           "type": "component",
           "cName": "分割线",
           "desc": "分割线",
+          "sort": 1,
+          "show": true,
+          "taro": true,
+          "author": "yisumay"
+        },
+        {
+          "version": "1.0.0",
+          "name": "Space",
+          "type": "component",
+          "cName": "间距",
+          "desc": "间距",
           "sort": 1,
           "show": true,
           "taro": true,

@@ -1,0 +1,65 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`space: should match snapshot 1`] = `
+<div
+  class="nut-space nut-space-horizontal nut-space-align-undefined nut-space-justify-undefined"
+>
+  <div
+    class="nut-space-item"
+  >
+    <div
+      class="nut-button nut-button--default nut-button--normal nut-button--round"
+    >
+      <div
+        class="nut-button__wrap"
+      >
+        
+        
+        <div
+          class=""
+        >
+          按钮
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="nut-space-item"
+  >
+    <div
+      class="nut-button nut-button--default nut-button--normal nut-button--round"
+    >
+      <div
+        class="nut-button__wrap"
+      >
+        
+        
+        <div
+          class=""
+        >
+          按钮
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="nut-space-item"
+  >
+    <div
+      class="nut-button nut-button--default nut-button--normal nut-button--round"
+    >
+      <div
+        class="nut-button__wrap"
+      >
+        
+        
+        <div
+          class=""
+        >
+          按钮
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
