@@ -1,0 +1,55 @@
+---
+import Demo from '@/components/Demo.astro';
+import MobileLayout from '@/layouts/MobileLayout.astro';
+import Basic from '~/nutui-solid/src/components/image/demos/basic'
+import Fit from '~/nutui-solid/src/components/image/demos/fit'
+import Position from '~/nutui-solid/src/components/image/demos/position'
+import Round from '~/nutui-solid/src/components/image/demos/round'
+import LoadingDemo from '~/nutui-solid/src/components/image/demos/loading'
+import Error from '~/nutui-solid/src/components/image/demos/error'
+import Lazy from '~/nutui-solid/src/components/image/demos/lazy'  
+
+const useTranslate = (obj) => {
+  return [obj['zh-CN']];
+};
+
+const [translated] = useTranslate({
+  'zh-CN': {
+    basic: '基础用法',
+    fit: '填充模式',
+    position: '图片位置',
+    round: '圆形图片',
+    loading: '加载中提示',
+    error: '加载失败',
+    lazy: '懒加载',
+  },
+  'en-US': {
+    basic: 'Basic Usage',
+    fit: 'Object Fill',
+    position: 'Object Position',
+    round: 'Round',
+    loading: 'Loading',
+    error: 'Error',
+    lazy: 'Lazy Load',
+  },
+});
+---
+
+<MobileLayout>
+  <Demo>
+    <h2>{translated.basic}</h2>
+    <Basic client:only="client" />
+    <h2>{translated.fill}</h2>
+    <Fit client:only="client" />
+     <h2>{translated.position}</h2>
+    <Position client:only="client" />
+    <h2>{translated.round}</h2>
+    <Round client:only="client" />
+    <h2>{translated.loading}</h2>
+    <LoadingDemo client:only="client" />
+    <h2>{translated.error}</h2>
+    <Error client:only="client" />
+    <h2>{translated.lazy}</h2>
+    <Lazy client:only="client" />
+  </Demo>
+</MobileLayout>

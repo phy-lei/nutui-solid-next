@@ -1,0 +1,41 @@
+---
+import Demo from '@/components/Demo.astro';
+import MobileLayout from '@/layouts/MobileLayout.astro';
+import Basic from '~/nutui-solid/src/components/space/demos/basic'
+import Direction from '~/nutui-solid/src/components/space/demos/direction'
+import Gutter from '~/nutui-solid/src/components/space/demos/gutter'
+import Wrap from '~/nutui-solid/src/components/space/demos/wrap'
+
+
+const useTranslate = (obj) => {
+  return [obj['zh-CN']];
+};
+
+const [translated] = useTranslate({
+  'zh-CN': {
+    basic: '基础用法',
+    direction: '垂直排列',
+    gutter: '自定义间距',
+    wrap: '自动换行',
+  },
+  'en-US': {
+    basic: 'Basic Usage',
+    direction: 'Custom gutter',
+    gutter: 'item wrap',
+    wrap: 'Round',
+  },
+});
+---
+
+<MobileLayout>
+  <Demo>
+    <h2>{translated.basic}</h2>
+    <Basic client:only="client" />
+    <h2>{translated.direction}</h2>
+    <Direction client:only="client" />
+    <h2>{translated.gutter}</h2>
+    <Gutter client:only="client" />
+    <h2>{translated.wrap}</h2>
+    <Wrap client:only="client" />  
+  </Demo>
+</MobileLayout>
