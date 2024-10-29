@@ -4,7 +4,10 @@ import MobileLayout from '@/layouts/MobileLayout.astro';
 import Basic from '~/nutui-solid/src/components/image/demos/basic'
 import Fit from '~/nutui-solid/src/components/image/demos/fit'
 import Position from '~/nutui-solid/src/components/image/demos/position'
-
+import Round from '~/nutui-solid/src/components/image/demos/round'
+import LoadingDemo from '~/nutui-solid/src/components/image/demos/loading'
+import Error from '~/nutui-solid/src/components/image/demos/error'
+import Lazy from '~/nutui-solid/src/components/image/demos/lazy'  
 
 const useTranslate = (obj) => {
   return [obj['zh-CN']];
@@ -40,13 +43,13 @@ const [translated] = useTranslate({
     <Fit client:only="client" />
      <h2>{translated.position}</h2>
     <Position client:only="client" />
-    <!--<h2>{translated.round}</h2>
-    <Title client:only="client" />
+    <h2>{translated.round}</h2>
+    <Round client:only="client" />
     <h2>{translated.loading}</h2>
-    <Icon client:only="client" />
+    <LoadingDemo client:only="client" />
     <h2>{translated.error}</h2>
-    <Custom client:only="client" />
+    <Error client:only="client" />
     <h2>{translated.lazy}</h2>
-    <Link client:only="client" /> -->
+    <Lazy client:only="client" />
   </Demo>
 </MobileLayout>

@@ -159,22 +159,25 @@ export const Image: Component<ParentProps<ImageProps>> = (props) => {
       <img
         ref={imgRef}
         class="nut-img"
-        src={local.lazyLoad ? (show() ? undefined : local.src) : local.src}
+        src={local.lazyLoad ? (show() ? local.src : undefined) : local.src}
+        data-src={local.lazyLoad ? (show() ? undefined : local.src) : undefined}
         style={styles()}
         {...rest}
         onLoad={onLoad}
         onError={onError}
       />
       <Show when={loading()}>
-        {local.loading ?? (
-          <div class="nut-img-loading">
+        <div class="nut-img-loading">
+          {local.loading ?? (
             <ImageLoading />
-          </div>
-        )}
+          )}
+        </div>
       </Show>
       <Show when={isError() && !loading()}>
         <div class="nut-img-error">
-          <ImageError />
+          {local.error ?? (
+            <ImageError />
+          )}
         </div>
       </Show>
     </div>
