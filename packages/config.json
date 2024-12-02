@@ -110,6 +110,17 @@
         },
         {
           "version": "1.0.0",
+          "name": "Layout",
+          "type": "component",
+          "cName": "布局",
+          "desc": "布局",
+          "sort": 1,
+          "show": true,
+          "taro": true,
+          "author": "yisumay"
+        },
+        {
+          "version": "1.0.0",
           "name": "Space",
           "type": "component",
           "cName": "间距",
