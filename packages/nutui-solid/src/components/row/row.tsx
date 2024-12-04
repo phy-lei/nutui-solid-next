@@ -42,9 +42,10 @@ export const Row: Component<ParentProps<RowProps>> = (props) => {
   })
 
   return (
-    <DataContextProvider value={{ gutter: local.gutter }}>
+    <DataContextProvider gutter={local.gutter || 0}>
       <div classList={classes()} {...rest}>
         {props.children}
+        {local.gutter}
       </div>
     </DataContextProvider>
   )

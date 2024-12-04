@@ -1,4 +1,4 @@
-import { Component, JSX, ParentProps, createMemo, mergeProps, splitProps, useContext } from 'solid-js'
+import { Component, JSX, ParentProps, createMemo, mergeProps, splitProps } from 'solid-js'
 import { useDataContext } from '../row/UserContext'
 
 export type ColProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'onClick'> & Partial<{
@@ -13,7 +13,8 @@ const defaultProps: ColProps = {
 
 export const Col: Component<ParentProps<ColProps>> = (props) => {
   const merged = mergeProps(defaultProps, props)
-  const { gutter } = useDataContext()
+  const { store } = useDataContext()
+
   const [local, rest] = splitProps(merged, [
     'span',
     'offset',
@@ -23,17 +24,17 @@ export const Col: Component<ParentProps<ColProps>> = (props) => {
     const prefixCls = 'nut-col'
     return {
       [prefixCls]: true,
-      [`${prefixCls}-gutter`]: !!gutter,
+      [`${prefixCls}-gutter`]: !!store().gutter,
       [`nut-col-${local.span}`]: true,
       [`nut-col-offset-${local.offset}`]: true,
     }
   })
 
   const style = createMemo(() => {
-    if (gutter) {
+    if (store().gutter) {
       return {
-        'padding-left': `${Number(gutter) / 2}px`,
-        'padding-right': `${Number(gutter) / 2}px`,
+        'padding-left': `${Number(store().gutter) / 2}px`,
+        'padding-right': `${Number(store().gutter) / 2}px`,
       }
     }
   })
