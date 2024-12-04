@@ -1,5 +1,5 @@
 import { Component, JSX, ParentProps, createMemo, mergeProps, splitProps, useContext } from 'solid-js'
-import { DataContext } from '../row/UserContext'
+import { useDataContext } from '../row/UserContext'
 
 export type ColProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'onClick'> & Partial<{
   span: string | number
@@ -13,7 +13,7 @@ const defaultProps: ColProps = {
 
 export const Col: Component<ParentProps<ColProps>> = (props) => {
   const merged = mergeProps(defaultProps, props)
-  const { gutter } = useContext(DataContext)
+  const { gutter } = useDataContext()
   const [local, rest] = splitProps(merged, [
     'span',
     'offset',

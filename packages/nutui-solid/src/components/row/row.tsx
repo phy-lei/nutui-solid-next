@@ -1,5 +1,5 @@
 import { Component, JSX, ParentProps, createMemo, mergeProps, splitProps } from 'solid-js'
-import { DataContext } from './UserContext'
+import { DataContextProvider } from './UserContext'
 
 export type RowProps = JSX.HTMLAttributes<HTMLDivElement> & Partial<{
   type: string
@@ -42,10 +42,10 @@ export const Row: Component<ParentProps<RowProps>> = (props) => {
   })
 
   return (
-    <DataContext.Provider value={{ gutter: local.gutter }}>
+    <DataContextProvider value={{ gutter: local.gutter }}>
       <div classList={classes()} {...rest}>
         {props.children}
       </div>
-    </DataContext.Provider>
+    </DataContextProvider>
   )
 }
