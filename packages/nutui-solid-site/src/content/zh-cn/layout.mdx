@@ -1,0 +1,61 @@
+---
+layout: ../../layouts/Layout.astro
+title: Layout
+---
+
+import CodeBlock from '@/components/CodeBlock.astro'
+
+# Layout 布局
+
+### 介绍
+
+用于快速进行布局
+
+### 安装
+
+```tsx
+import { Col, Row } from '@nutui/nutui-solid';
+```
+
+### 基础用法
+
+:::demo
+
+<CodeBlock src='basic.tsx'></CodeBlock>
+
+:::
+
+### 分栏间隔
+
+:::demo
+
+<CodeBlock src='gap.tsx'></CodeBlock>
+
+:::
+
+### Flex 布局
+
+:::demo
+
+<CodeBlock src='flex.tsx'></CodeBlock>
+
+:::
+
+## API
+
+### Row Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| type | 布局方式，可选值为 `flex` | string | `-` |
+| gutter | 列元素之间的间距（单位为`px`） | string \| number | `-` |
+| justify | Flex 主轴对齐方式，可选值为 `start` `end` `center` `space-around` `space-between` `space-evenly` | string | `start` |
+| align | `Flex` 交叉轴对齐方式，可选值为 `flex-start` `center` `flex-end` | string | `flex-start` |
+| flexWrap | `Flex` 是否换行，可选值为 `nowrap` `wrap` `reverse` | string | `nowrap` |
+
+### Col Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| span | 列元素宽度（共分为 24 份，例如设置一行 3 个，那么 span 值为 8） | string \| number | `24` |
+| offset | 列元素偏移距离 | string \| number | `0` |
