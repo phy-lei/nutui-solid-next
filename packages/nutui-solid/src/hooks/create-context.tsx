@@ -2,7 +2,7 @@ import {
   createContext as createSolidContext,
   useContext as useSolidContext,
 } from 'solid-js'
-import { type Context, type ContextProviderComponent } from 'solid-js'
+import { type Context, type FlowComponent } from 'solid-js'
 
 export interface CreateContextOptions<T> {
   hookName?: string
@@ -13,7 +13,7 @@ export interface CreateContextOptions<T> {
 }
 
 export type CreateContextReturn<T> = [
-  ContextProviderComponent<T>,
+  FlowComponent<T>,
   () => T,
   Context<T>,
 ]
