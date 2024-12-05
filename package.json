@@ -8,6 +8,7 @@
   "keywords": [],
   "main": "index.js",
   "scripts": {
+    "gen-icon": "pnpm --filter @nutui/icons-solid run generate",
     "dev": "pnpm dev-ui & pnpm --filter nutui-solid-site run dev",
     "build": "pnpm build-ui && pnpm --filter nutui-solid-site run build",
     "dev-ui": "pnpm --filter nutui-solid run dev",

@@ -1,0 +1,16 @@
+{
+  "id": "2166874",
+  "name": "nutui",
+  "font_family": "nutui-iconfont",
+  "css_prefix_text": "nut-icon-",
+  "description": "nutui 3.0字体管理",
+  "glyphs": [
+    {
+      "unicode": "ef9f",
+      "icon_id": "18106799",
+      "unicode_decimal": 61343,
+      "font_class": "del",
+      "name": "del"
+    }
+  ]
+}

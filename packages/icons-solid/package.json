@@ -1,12 +1,50 @@
 {
-  "name": "icons-solid",
-  "version": "1.0.0",
-  "description": "",
-  "author": "",
-  "license": "ISC",
-  "keywords": [],
-  "main": "index.js",
+  "name": "@nutui/icons-solid",
+  "version": "0.1.1",
+  "description": "京东风格的轻量级移动端 Solid 组件库 NutUI 图标包",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/es/index.es.js",
+      "require": "./dist/lib/index.umd.js"
+    },
+    "./*": "./*"
+  },
+  "main": "dist/lib/index.umd.js",
+  "module": "dist/es/index.es.js",
+  "files": [
+    "CHANGELOG.md",
+    "LICENSE",
+    "README.md",
+    "dist",
+    "package.json"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build --config vite.config.build.umd.ts && vite build --config vite.config.build.es.ts && vite build --config vite.config.build.css.ts && vite build --config vite.config.dts.ts",
+    "build:site": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "generate": "node scripts/generate.cjs"
+  },
+  "style": "dist/style_icon.css",
+  "typings": "dist/types/index.d.ts",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
+    "@types/glob": "^8.0.0",
+    "@types/node": "^18.11.10",
+    "@types/svg-parser": "^2.0.3",
+    "consola": "^2.15.3",
+    "fs-extra": "^11.1.0",
+    "glob": "^8.1.0",
+    "svg-parser": "^2.0.4",
+    "svg-sprite-loader": "^6.0.11",
+    "svgo": "^3.0.2",
+    "ts-node": "10.9.2",
+    "vite": "^5.1.3",
+    "vite-plugin-dts": "3.6.4"
   }
 }
