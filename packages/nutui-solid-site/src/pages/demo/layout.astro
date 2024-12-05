@@ -1,0 +1,35 @@
+---
+import Demo from '@/components/Demo.astro';
+import MobileLayout from '@/layouts/MobileLayout.astro';
+import Basic from '~/nutui-solid/src/components/layout/demos/basic.tsx'
+import Gap from '~/nutui-solid/src/components/layout/demos/gap.tsx'
+import Flex from '~/nutui-solid/src/components/layout/demos/flex.tsx'
+
+const useTranslate = (obj) => {
+  return [obj['zh-CN']];
+};
+
+const [translated] = useTranslate({
+  'zh-CN': {
+    basic: '基础用法',
+    gap: '分栏间隔',
+    flex: 'Flex 布局'
+  },
+  'en-US': {
+    basic: 'Basic Usage',
+    gap: 'Column spacing',
+    flex: 'Flex Layout'
+  },
+});
+---
+
+<MobileLayout>
+  <Demo>
+    <h2>{translated.basic}</h2>
+    <Basic client:only="client" />
+    <h2>{translated.gap}</h2>
+    <Gap client:only="client" />
+    <h2>{translated.flex}</h2>
+    <Flex client:only="client" />
+  </Demo>
+</MobileLayout>
