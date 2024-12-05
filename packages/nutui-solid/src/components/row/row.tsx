@@ -45,7 +45,6 @@ export const Row: Component<ParentProps<RowProps>> = (props) => {
     <DataContextProvider gutter={local.gutter || 0}>
       <div classList={classes()} {...rest}>
         {props.children}
-        {local.gutter}
       </div>
     </DataContextProvider>
   )

@@ -1,22 +1,11 @@
-import { Button, Col, Row, Space } from 'nutui-solid'
-import { createSignal } from 'solid-js'
+import { Col, Row } from 'nutui-solid'
 import { demoStyles } from './basic'
 
 function Gap() {
-  const [gutter, setGutter] = createSignal(8)
-
-  const handleClick = () => {
-    setGutter(gutter() + 4)
-  }
-
   return (
     <>
       <style>{demoStyles}</style>
-      <Space>
-        <Button onClick={handleClick}>add</Button>
-        <Button onClick={() => setGutter(gutter() - 4)}>minus</Button>
-      </Space>
-      <Row gutter={gutter()}>
+      <Row gutter="10">
         <Col span="8">
           <div class="layout-flex-content">span:8</div>
         </Col>
