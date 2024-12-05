@@ -14,6 +14,8 @@ import Row from './row';
 export * from './row';
 import Space from './space';
 export * from './space';
+import CellGroup from './cellgroup';
+export * from './cellgroup';
 
 
 import './button/index.scss';
