@@ -13,7 +13,7 @@ const defaultProps: ColProps = {
 
 export const Col: Component<ParentProps<ColProps>> = (props) => {
   const merged = mergeProps(defaultProps, props)
-  const { store } = useDataContext()
+  const context = useDataContext()
 
   const [local, rest] = splitProps(merged, [
     'span',
@@ -24,17 +24,17 @@ export const Col: Component<ParentProps<ColProps>> = (props) => {
     const prefixCls = 'nut-col'
     return {
       [prefixCls]: true,
-      [`${prefixCls}-gutter`]: !!store().gutter,
+      [`${prefixCls}-gutter`]: !!context.gutter,
       [`nut-col-${local.span}`]: true,
       [`nut-col-offset-${local.offset}`]: true,
     }
   })
 
   const style = createMemo(() => {
-    if (store().gutter) {
+    if (context.gutter) {
       return {
-        'padding-left': `${Number(store().gutter) / 2}px`,
-        'padding-right': `${Number(store().gutter) / 2}px`,
+        'padding-left': `${Number(context.gutter) / 2}px`,
+        'padding-right': `${Number(context.gutter) / 2}px`,
       }
     }
   })

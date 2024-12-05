@@ -1,11 +1,8 @@
 import {
-  createSignal,
   createContext as createSolidContext,
   useContext as useSolidContext,
 } from 'solid-js'
-import { effect } from 'solid-js/web'
 import { type Context, type ContextProviderComponent } from 'solid-js'
-import { isObject } from '@/utils/is'
 
 export interface CreateContextOptions<T> {
   hookName?: string
@@ -50,34 +47,13 @@ export function createContext<T>(options: CreateContextOptions<T> = {}) {
     return context
   }
 
-  return [Context.Provider, useContext, Context] as CreateContextReturn<T>
-}
-
-/**
- * 响应式Provider 支持value的类型为 Accessor
- * @param {any} Provider:Context<any>['Provider']
- * @returns {any}
- */
-export function withSignalProvider(Provider: Context<any>['Provider']) {
-  return (props) => {
-    const [state, setState] = createSignal(props)
-
-    effect(() => {
-      if (props && isObject(props)) {
-        for (const key in props) {
-          if (key !== 'children') {
-            if (props[key] !== state()[key]) {
-              setState({ ...state(), key: props[key] })
-            }
-          }
-        }
-      }
-    })
-
+  function ContextProvider(props) {
     return (
-      <Provider value={{ store: state }}>
+      <Context.Provider value={props}>
         {props.children}
-      </Provider>
+      </Context.Provider>
     )
   }
+
+  return [ContextProvider, useContext, Context] as CreateContextReturn<T>
 }
