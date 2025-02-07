@@ -14,8 +14,9 @@
   "scripts": {
     "prepare": "node scripts/generate-nutui.cjs",
     "generate:themes": "node scripts/generate-themes.cjs",
-    "dev": "pnpm dev-components && pnpm build-css",
-    "build": "pnpm build-components && pnpm build-css",
+    "generate:boot": "node scripts/generate-nutui.cjs",
+    "dev": "pnpm generate:boot && pnpm dev-components && pnpm build-css",
+    "build": "pnpm generate:boot && pnpm build-components && pnpm build-css",
     "dev-components": "vite build --watch",
     "build-components": "vite build",
     "build-css": "pnpm generate:themes && vite build -c vite.config.build.css.ts",
