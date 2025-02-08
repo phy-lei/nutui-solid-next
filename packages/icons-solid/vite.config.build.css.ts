@@ -8,6 +8,7 @@ let input = {
 
 
 export default defineConfig({
+  publicDir: false,
   build: {
     minify: true,
     cssCodeSplit: true,
