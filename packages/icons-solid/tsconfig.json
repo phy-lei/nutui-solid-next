@@ -1,20 +1,12 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "ESNext",
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "lib": ["ESNext", "DOM"],
-    "useDefineForClassFields": true,
     "baseUrl": ".",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "paths": {
-      "@iconfont/*": ["../../iconfont/*"]
-    },
     "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "isolatedModules": true,
-    "skipLibCheck": true
+    "types": ["vite/client"],
+    "esModuleInterop": true
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "../../iconfont"]
+  "include": ["**/*.ts", "**/*.tsx"]
 }

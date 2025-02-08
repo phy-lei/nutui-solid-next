@@ -2,7 +2,6 @@
   "compilerOptions": {
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
-    "baseUrl": ".",
-    "types": ["vite-plugin-pwa/info"]
+    "baseUrl": "."
   }
 }

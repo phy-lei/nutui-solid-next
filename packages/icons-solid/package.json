@@ -12,6 +12,8 @@
   },
   "main": "dist/lib/index.umd.js",
   "module": "dist/es/index.es.js",
+  "style": "dist/style_iconfont.css",
+  "typings": "dist/types/index.d.ts",
   "files": [
     "CHANGELOG.md",
     "LICENSE",
@@ -24,8 +26,6 @@
     "build": "vite build --config vite.config.build.es.ts && vite build --config vite.config.build.umd.ts && vite build --config vite.config.build.css.ts && vite build --config vite.config.dts.ts",
     "generate": "node scripts/generate.cjs"
   },
-  "style": "dist/style_icon.css",
-  "typings": "dist/types/index.d.ts",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"

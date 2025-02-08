@@ -11,5 +11,7 @@ export default antfu({
     'packages/nutui-solid/dist',
     'packages/nutui-solid-site/.astro',
     'packages/nutui-solid/scripts',
+    'packages/icons-solid/scripts',
+    'packages/icons-solid/dist',
   ],
 })
