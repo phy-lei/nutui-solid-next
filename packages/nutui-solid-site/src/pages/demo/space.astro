@@ -1,11 +1,10 @@
 ---
 import Demo from '@/components/Demo.astro';
 import MobileLayout from '@/layouts/MobileLayout.astro';
-import Basic from '~/nutui-solid/src/components/space/demos/basic'
-import Direction from '~/nutui-solid/src/components/space/demos/direction'
-import Gutter from '~/nutui-solid/src/components/space/demos/gutter'
-import Wrap from '~/nutui-solid/src/components/space/demos/wrap'
-
+import Basic from '~/nutui-solid/src/components/space/demos/basic';
+import Direction from '~/nutui-solid/src/components/space/demos/direction';
+import Gutter from '~/nutui-solid/src/components/space/demos/gutter';
+import Wrap from '~/nutui-solid/src/components/space/demos/wrap';
 
 const useTranslate = (obj) => {
   return [obj['zh-CN']];
@@ -30,12 +29,12 @@ const [translated] = useTranslate({
 <MobileLayout>
   <Demo>
     <h2>{translated.basic}</h2>
-    <Basic client:only="client" />
+    <Basic client:only="solid-js" />
     <h2>{translated.direction}</h2>
-    <Direction client:only="client" />
+    <Direction client:only="solid-js" />
     <h2>{translated.gutter}</h2>
-    <Gutter client:only="client" />
+    <Gutter client:only="solid-js" />
     <h2>{translated.wrap}</h2>
-    <Wrap client:only="client" />  
+    <Wrap client:only="solid-js" />
   </Demo>
 </MobileLayout>

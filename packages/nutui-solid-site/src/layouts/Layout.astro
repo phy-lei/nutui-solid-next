@@ -4,7 +4,7 @@ import '../assets/styles/highlight.scss';
 import '../assets/styles/md-style.scss';
 import '../assets/styles/header.scss';
 import { version } from '../../package.json';
-import Nav from '@/components/nav/nav';
+import Nav from '@/components/nav/nav.astro';
 
 const { title } = Astro.params;
 ---
@@ -33,7 +33,7 @@ const { title } = Astro.params;
         </a>
       </div>
     </div>
-    <Nav client:load />
+    <Nav />
     <div class="doc-content">
       <div class="doc-title">
         <div class="doc-title-position">

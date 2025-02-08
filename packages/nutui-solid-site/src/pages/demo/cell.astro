@@ -1,16 +1,15 @@
 ---
 import Demo from '@/components/Demo.astro';
 import MobileLayout from '@/layouts/MobileLayout.astro';
-import Basic from '~/nutui-solid/src/components/cell/demos/basic'
-import Size from '~/nutui-solid/src/components/cell/demos/size'
-import Content from '~/nutui-solid/src/components/cell/demos/content'
-import Title from '~/nutui-solid/src/components/cell/demos/title'
-import Icon from '~/nutui-solid/src/components/cell/demos/icon'
-import Custom from '~/nutui-solid/src/components/cell/demos/custom'
-import Align from '~/nutui-solid/src/components/cell/demos/align'
-import Group from '~/nutui-solid/src/components/cell/demos/group'
-import Link from '~/nutui-solid/src/components/cell/demos/link'
-
+import Basic from '~/nutui-solid/src/components/cell/demos/basic';
+import Size from '~/nutui-solid/src/components/cell/demos/size';
+import Content from '~/nutui-solid/src/components/cell/demos/content';
+import Title from '~/nutui-solid/src/components/cell/demos/title';
+import Icon from '~/nutui-solid/src/components/cell/demos/icon';
+import Custom from '~/nutui-solid/src/components/cell/demos/custom';
+import Align from '~/nutui-solid/src/components/cell/demos/align';
+import Group from '~/nutui-solid/src/components/cell/demos/group';
+import Link from '~/nutui-solid/src/components/cell/demos/link';
 
 const useTranslate = (obj) => {
   return [obj['zh-CN']];
@@ -45,22 +44,22 @@ const [translated] = useTranslate({
 <MobileLayout>
   <Demo>
     <h2>{translated.basic}</h2>
-    <Basic client:only="client" />
+    <Basic client:only="solid-js" />
     <h2>{translated.size}</h2>
-    <Size client:only="client" />
+    <Size client:only="solid-js" />
     <h2>{translated.content}</h2>
-    <Content client:only="client" />
+    <Content client:only="solid-js" />
     <h2>{translated.title}</h2>
-    <Title client:only="client" />
+    <Title client:only="solid-js" />
     <h2>{translated.icon}</h2>
-    <Icon client:only="client" />
+    <Icon client:only="solid-js" />
     <h2>{translated.custom}</h2>
-    <Custom client:only="client" />
+    <Custom client:only="solid-js" />
     <h2>{translated.link}</h2>
-    <Link client:only="client" />
+    <Link client:only="solid-js" />
     <h2>{translated.group}</h2>
-    <Group client:only="client" />
+    <Group client:only="solid-js" />
     <h2>{translated.align}</h2>
-    <Align client:only="client" />
+    <Align client:only="solid-js" />
   </Demo>
 </MobileLayout>

@@ -1,14 +1,13 @@
 import { Button } from 'nutui-solid'
-import { Add, IconFont } from '@nutui/icons-solid'
 
 function Demo1() {
   return (
     <>
       <Button color="blue" plain>
-        <Add />
+        Primary
       </Button>
       <Button type="info">
-        <IconFont name="minus" />
+        Info
       </Button>
       <Button type="default">
         Default

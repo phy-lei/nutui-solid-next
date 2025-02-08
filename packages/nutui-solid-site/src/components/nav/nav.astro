@@ -1,0 +1,76 @@
+---
+import { nav } from '~/config.json';
+
+// import useLocale from '@/assets/locale/uselocale';
+const lang = Astro.params.lang;
+
+function letterToLower(str: string) {
+  return str.toLocaleLowerCase();
+}
+---
+
+<div class="doc-nav" id="doc-nav">
+  <ol>
+    {
+      nav.map((cn) => (
+        <>
+          {cn.enName !== 'dentry1' ? (
+            <li>{lang === 'zh-cn' ? cn.name : cn.enName}</li>
+          ) : null}
+          <ul>
+            {cn.packages.map((cp) => {
+              if (!cp.show) return null;
+              return (
+                <a
+                  href={letterToLower(
+                    `${lang ? `/h5/${lang}` : '/h5'}/${cp.name}`,
+                  )}
+                >
+                  <li>
+                    {cp.name}
+                    &nbsp;&nbsp;
+                    <b>{lang === 'zh-cn' && cp.cName}</b>
+                    {cp.version !== '2.0.0' ? (
+                      <b
+                        style={{
+                          'background': 'rgb(250, 205, 205)',
+                          'padding': '0px 5px',
+                          'border-radius': '5px',
+                          'color': 'rgb(255, 255, 255)',
+                          'transform': 'scale(0.8)',
+                          'height': '20px',
+                          'line-height': '20px',
+                          'display': 'inline-block',
+                        }}
+                      >
+                        🛠
+                      </b>
+                    ) : null}
+                  </li>
+                </a>
+              );
+            })}
+          </ul>
+        </>
+      ))
+    }
+  </ol>
+</div>
+
+<style>
+  @import './nav.scss';
+</style>
+
+<script>
+  const navDom = document.getElementById('doc-nav');
+
+  const scrollNav = () => {
+    const top = document.documentElement.scrollTop;
+    if (top > 64) {
+      navDom.classList.add('fixed');
+    } else {
+      navDom.classList.remove('fixed');
+    }
+  };
+  document.addEventListener('scroll', scrollNav);
+</script>

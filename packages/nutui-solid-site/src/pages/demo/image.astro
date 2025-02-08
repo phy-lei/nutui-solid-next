@@ -1,13 +1,13 @@
 ---
 import Demo from '@/components/Demo.astro';
 import MobileLayout from '@/layouts/MobileLayout.astro';
-import Basic from '~/nutui-solid/src/components/image/demos/basic'
-import Fit from '~/nutui-solid/src/components/image/demos/fit'
-import Position from '~/nutui-solid/src/components/image/demos/position'
-import Round from '~/nutui-solid/src/components/image/demos/round'
-import LoadingDemo from '~/nutui-solid/src/components/image/demos/loading'
-import Error from '~/nutui-solid/src/components/image/demos/error'
-import Lazy from '~/nutui-solid/src/components/image/demos/lazy'  
+import Basic from '~/nutui-solid/src/components/image/demos/basic';
+import Fit from '~/nutui-solid/src/components/image/demos/fit';
+import Position from '~/nutui-solid/src/components/image/demos/position';
+import Round from '~/nutui-solid/src/components/image/demos/round';
+import LoadingDemo from '~/nutui-solid/src/components/image/demos/loading';
+import Error from '~/nutui-solid/src/components/image/demos/error';
+import Lazy from '~/nutui-solid/src/components/image/demos/lazy';
 
 const useTranslate = (obj) => {
   return [obj['zh-CN']];
@@ -38,18 +38,18 @@ const [translated] = useTranslate({
 <MobileLayout>
   <Demo>
     <h2>{translated.basic}</h2>
-    <Basic client:only="client" />
+    <Basic client:only="solid-js" />
     <h2>{translated.fill}</h2>
-    <Fit client:only="client" />
-     <h2>{translated.position}</h2>
-    <Position client:only="client" />
+    <Fit client:only="solid-js" />
+    <h2>{translated.position}</h2>
+    <Position client:only="solid-js" />
     <h2>{translated.round}</h2>
-    <Round client:only="client" />
+    <Round client:only="solid-js" />
     <h2>{translated.loading}</h2>
-    <LoadingDemo client:only="client" />
+    <LoadingDemo client:only="solid-js" />
     <h2>{translated.error}</h2>
-    <Error client:only="client" />
+    <Error client:only="solid-js" />
     <h2>{translated.lazy}</h2>
-    <Lazy client:only="client" />
+    <Lazy client:only="solid-js" />
   </Demo>
 </MobileLayout>
