@@ -1,7 +1,8 @@
 import h from 'solid-js/h'
-import { mergeProps, createMemo } from 'solid-js'
+import { memo } from 'solid-js/web'
+import { createMemo, mergeProps, splitProps } from 'solid-js'
 import { type Component, type JSX, type ParentProps } from 'solid-js'
-import { globalConfig } from "./internal";
+import { globalConfig } from './internal'
 
 export interface IconProps {
     name: string
@@ -19,7 +20,7 @@ const defaultProps = {
     name: '',
     size: '',
     color: '',
-    onClick: (e: MouseEvent) => {},
+    onClick: () => { },
     class: '',
     classPrefix: globalConfig.classPrefix,
     tag: globalConfig.tag,
@@ -30,45 +31,56 @@ function pxCheck(value: string | number): string {
     return Number.isNaN(Number(value)) ? String(value) : `${value}px`
 }
 
-export default function Icon<T>(props): Component<ParentProps<Partial<IconProps> & T>> {
+function IconFont(props: ParentProps<Partial<IconProps>>) {
     const merged = mergeProps(defaultProps, props)
- 
+    const [local, rest] = splitProps(merged, [
+        'name',
+        'size',
+        'color',
+        'onClick',
+        'class',
+        'classPrefix',
+        'tag',
+        'fontClassName',
+        'children',
+        'style',
+    ])
 
-    const isImage = createMemo(() => merged.name ? merged.name.indexOf('/') !== -1 : false)
-    
-    const type = createMemo(() => isImage() ? 'img' : merged.tag)
+    const isImage = createMemo(() => local.name ? local.name.includes('/') : false)
+
+    const type = createMemo(() => isImage() ? 'img' : local.tag)
 
     const handleClick = (e: MouseEvent) => {
-        if (merged.onClick) {
-            merged.onClick(e)
+        if (local.onClick) {
+            local.onClick(e)
         }
     }
     const hasSrc = () => {
-        if (isImage()) return { src: merged.name }
+        if (isImage())
+            return { src: local.name }
         return {}
     }
 
-    return h(
+    return memo(() => h(
         type(),
         {
             class: isImage
-                ? `${merged.classPrefix}__img ${merged.class || ''} `
-                : `${merged.fontClassName} ${merged.classPrefix} ${merged.classPrefix}-${merged.name} ${
-                    merged.class || ''
+                ? `${local.classPrefix}__img ${local.class || ''} `
+                : `${local.fontClassName} ${local.classPrefix} ${local.classPrefix}-${local.name} ${local.class || ''
                 }`,
             style: {
-                color: merged.color,
-                fontSize: pxCheck(merged.size),
-                width: pxCheck(merged.size),
-                height: pxCheck(merged.size),
-                ...merged.style,
+                color: local.color,
+                fontSize: pxCheck(local.size),
+                width: pxCheck(local.size),
+                height: pxCheck(local.size),
+                ...local.style,
             },
-            ...merged.rest,
+            ...rest,
             onClick: handleClick,
             ...hasSrc(),
         },
-        merged.children
-    )
+        local.children,
+    ), true)
 }
 
-
+export default IconFont

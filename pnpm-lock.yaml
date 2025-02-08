@@ -83,6 +83,9 @@ importers:
 
   packages/nutui-solid:
     dependencies:
+      '@nutui/icons-solid':
+        specifier: workspace:*
+        version: link:../icons-solid
       classnames:
         specifier: ^2.5.1
         version: 2.5.1

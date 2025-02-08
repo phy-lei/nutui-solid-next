@@ -25,6 +25,7 @@
     "test:c": "vitest --coverage"
   },
   "dependencies": {
+    "@nutui/icons-solid": "workspace:*",
     "classnames": "^2.5.1"
   },
   "devDependencies": {
