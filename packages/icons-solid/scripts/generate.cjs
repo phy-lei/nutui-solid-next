@@ -9,7 +9,7 @@ const path = require('path')
 
 
 const getSvg = (componentName, viewBox, d) => {
-  const template = `
+    const template = `
 import { mergeProps } from 'solid-js'
 import { type Component } from 'solid-js'
 import Icon, {defaultProps, SVG_IconProps} from '../IconTemplate'
@@ -18,17 +18,17 @@ const ${componentName}:Component<SVG_IconProps> = (props) => {
   const realProps = mergeProps(defaultProps, props)
   return <Icon {...realProps} name={realProps.name || '${componentName}'} viewBox={'${viewBox}'}>
       ${d.map(d => {
-      return `<path
+        return `<path
       d="${d}"
       fill="currentColor"
       ></path>`
-  })}
+    })}
   </Icon>
 }
 
 export default ${componentName}
 `
-  return template
+    return template
 }
 
 let entryEs = `/** 此文件由 script generate 脚本生成 */
@@ -48,70 +48,70 @@ let entryLibDTS = `/** 此文件由 script generate 脚本生成 */
 \n`;
 
 const projectID = process.env.PROJECT_ID
-let pattern = path.join(__dirname, '../../icons-svg/*.svg');
+let pattern = path.join(__dirname, '../../icons-svg/*.svg').replace(/\\/g, '/');
 let iconsSolidDir = `icons-solid`;
 let iconsReactTaroDir = `icons-solid-taro`;
 
 // 暂未使用
 if (projectID) {
-  entryLib = `/** 此文件由 script generate 脚本生成 */
+    entryLib = `/** 此文件由 script generate 脚本生成 */
   eexport { default as IconFont } from "../IconFont";
   export { config } from "./${projectID}-iconFontConfig";
   export { IconFont, config };
 \n`;
 
-  pattern = `${process.cwd()}/packages/${projectID}-icons-svg/*.svg`;
-  iconsSolidDir = `${projectID}-icons-solid`;
-  iconsReactTaroDir = `${projectID}-icons-solid-taro`;
+    pattern = `${process.cwd()}/packages/${projectID}-icons-svg/*.svg`;
+    iconsSolidDir = `${projectID}-icons-solid`;
+    iconsReactTaroDir = `${projectID}-icons-solid-taro`;
 }
 
 let svgConfig = {}
-fsExtra.readFile(path.join(__dirname, '../../icons-svg/config.json')).then(res=>{
+fsExtra.readFile(path.join(__dirname, '../../icons-svg/config.json')).then(res => {
     svgConfig = JSON.parse(res.toString())
 })
 
-new glob.Glob(pattern, {},(err, files) => {
-  const entryArray = []
-  files.forEach(file => {
-      const basename = path.basename(file)
-      const iconFontName = basename.replace('.svg', '')
-      const componentName = camelCase(iconFontName, {
-          pascalCase: true
-      })
+new glob.Glob(pattern, {}, (err, files) => {
+    const entryArray = []
+    files.forEach(file => {
+        const basename = path.basename(file)
+        const iconFontName = basename.replace('.svg', '')
+        const componentName = camelCase(iconFontName, {
+            pascalCase: true
+        })
 
-      entryArray.push(componentName)
-      entryLib += `export { default as ${componentName} } from '../components/${componentName}'\n`
-      entryEs += `export { default as ${componentName} } from "./icons/${componentName}.js";\n`;
-      entryLibDTS += `export { default as ${componentName} } from "../components/${componentName}";\n`;
+        entryArray.push(componentName)
+        entryLib += `export { default as ${componentName} } from '../components/${componentName}'\n`
+        entryEs += `export { default as ${componentName} } from "./icons/${componentName}.js";\n`;
+        entryLibDTS += `export { default as ${componentName} } from "../components/${componentName}";\n`;
 
-      fsExtra.readFile(file, {encoding: 'utf8'}).then((res) => {
-          let svg = optimize(res).data;
-          const svgAST = parse(svg).children[0];
-          let pathds = (svgAST).children?.map((item) => {
-              return item.properties.d;
-          })
-          let viewBox = (svgAST).properties.viewBox;
-          fsExtra.outputFile(`${process.cwd()}/src/components/${componentName}.tsx`, getSvg(componentName, viewBox, pathds), 'utf8', (error) => {
-              consola.success(`${iconsSolidDir} ${componentName} 文件写入成功`);
-          });
-    
-      })
-   
-  })
-  fsExtra.outputFile(`${process.cwd()}/src/components/iconsConfig.ts`, `export const iconsConfig = ${JSON.stringify(entryArray)}`, 'utf8', (error) => {
-      consola.success(`${iconsSolidDir} 文件列表配置写入成功`);
-  });
+        fsExtra.readFile(file, { encoding: 'utf8' }).then((res) => {
+            let svg = optimize(res).data;
+            const svgAST = parse(svg).children[0];
+            let pathds = (svgAST).children?.map((item) => {
+                return item.properties.d;
+            })
+            let viewBox = (svgAST).properties.viewBox;
+            fsExtra.outputFile(`${process.cwd()}/src/components/${componentName}.tsx`, getSvg(componentName, viewBox, pathds), 'utf8', (error) => {
+                consola.success(`${iconsSolidDir} ${componentName} 文件写入成功`);
+            });
 
-  fsExtra.outputFile(`${process.cwd()}/dist/es/index.es.js`, entryEs + 'import "../style_icon.css";', 'utf8', (error) => {
-      consola.success(`${iconsSolidDir} ES 入口文件文件写入成功`);
-  });
+        })
 
-  fsExtra.outputFile(`${process.cwd()}/src/buildEntry/lib-new.ts`, entryLib, 'utf8', (error) => {
-      consola.success(`${iconsSolidDir} buildEntry 文件写入成功`);
-  });
+    })
+    fsExtra.outputFile(`${process.cwd()}/src/components/iconsConfig.ts`, `export const iconsConfig = ${JSON.stringify(entryArray)}`, 'utf8', (error) => {
+        consola.success(`${iconsSolidDir} 文件列表配置写入成功`);
+    });
 
-  fsExtra.outputFile(`${process.cwd()}/src/buildEntry/lib-new-dts.ts`, entryLibDTS, 'utf8', (error) => {
-      consola.success(`${iconsSolidDir} buildEntry dts 文件写入成功`);
-  });
+    fsExtra.outputFile(`${process.cwd()}/dist/es/index.es.js`, entryEs + 'import "../style_icon.css";', 'utf8', (error) => {
+        consola.success(`${iconsSolidDir} ES 入口文件文件写入成功`);
+    });
+
+    fsExtra.outputFile(`${process.cwd()}/src/buildEntry/lib-new.ts`, entryLib, 'utf8', (error) => {
+        consola.success(`${iconsSolidDir} buildEntry 文件写入成功`);
+    });
+
+    fsExtra.outputFile(`${process.cwd()}/src/buildEntry/lib-new-dts.ts`, entryLibDTS, 'utf8', (error) => {
+        consola.success(`${iconsSolidDir} buildEntry dts 文件写入成功`);
+    });
 
 })

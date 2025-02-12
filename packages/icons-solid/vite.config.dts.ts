@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
-import fsExtra, {appendFile} from 'fs-extra'
+import fsExtra, { appendFile } from 'fs-extra'
 import solidPlugin from 'vite-plugin-solid';
 
 // https://vitejs.dev/config/
