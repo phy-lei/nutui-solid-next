@@ -82,6 +82,18 @@
         },
         {
           "version": "1.0.0",
+          "name": "CellGroup",
+          "type": "component",
+          "cName": "单元格组件",
+          "desc": "展示分组列表",
+          "sort": 2,
+          "show": false,
+          "exportEmpty": true,
+          "taro": true,
+          "author": "yisumay"
+        },
+        {
+          "version": "1.0.0",
           "name": "Image",
           "type": "component",
           "cName": "图片",
@@ -113,9 +125,33 @@
           "name": "Layout",
           "type": "component",
           "cName": "布局",
-          "desc": "布局",
+          "desc": "简便地创建布局",
           "sort": 1,
           "show": true,
+          "taro": true,
+          "author": "yisumay"
+        },
+        {
+          "version": "1.0.0",
+          "name": "Row",
+          "type": "component",
+          "cName": "布局-Row",
+          "desc": "布局组件Row",
+          "sort": 2,
+          "show": false,
+          "exportEmpty": true,
+          "taro": true,
+          "author": "yisumay"
+        },
+        {
+          "version": "1.0.0",
+          "name": "Col",
+          "type": "component",
+          "cName": "布局-Col",
+          "desc": "布局组件Col",
+          "sort": 2,
+          "show": false,
+          "exportEmpty": true,
           "taro": true,
           "author": "yisumay"
         },
