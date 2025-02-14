@@ -9,21 +9,22 @@ const path = require('path')
 
 
 const getSvg = (componentName, viewBox, d) => {
-  const template = `
-import { mergeProps } from 'solid-js'
+  const template = `import { mergeProps } from 'solid-js'
 import { type Component } from 'solid-js'
-import Icon, {defaultProps, SVG_IconProps} from '../IconTemplate'
+import Icon, { SVG_IconProps, defaultProps } from '../IconTemplate'
 
-const ${componentName}:Component<SVG_IconProps> = (props) => {
+const ${componentName}: Component<SVG_IconProps> = (props) => {
   const realProps = mergeProps(defaultProps, props)
-  return <Icon {...realProps} name={realProps.name || '${componentName}'} viewBox={'${viewBox}'}>
+  return (
+    <Icon {...realProps} name={realProps.name || '${componentName}'} viewBox="${viewBox}">
       ${d.map(d => {
       return `<path
-      d="${d}"
-      fill="currentColor"
-      ></path>`
-  })}
-  </Icon>
+        d="${d}"
+        fill="currentColor"
+      />`
+    })}
+    </Icon>
+  )
 }
 
 export default ${componentName}
@@ -48,7 +49,7 @@ let entryLibDTS = `/** 此文件由 script generate 脚本生成 */
 \n`;
 
 const projectID = process.env.PROJECT_ID
-let pattern = path.join(__dirname, '../../icons-svg/*.svg');
+let pattern = path.join(__dirname, '../../icons-svg/*.svg').replace(/\\/g, '/');
 let iconsSolidDir = `icons-solid`;
 let iconsReactTaroDir = `icons-solid-taro`;
 
