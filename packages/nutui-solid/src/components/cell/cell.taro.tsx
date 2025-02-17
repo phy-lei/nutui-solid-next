@@ -90,7 +90,7 @@ export const Cell: Component<ParentProps<CellProps>> = (props) => {
   })
 
   const handleClick: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> = (e) => {
-    if (typeof local.onClick === 'function') {
+    if (typeof local?.onClick === 'function') {
       local.onClick(e)
     }
     if (props.url)
@@ -121,12 +121,11 @@ export const Cell: Component<ParentProps<CellProps>> = (props) => {
               </Show>
               {
                 local?.link
-                  ? local?.link
-                  : (
-                      <Show when={local.isLink}>
-                        {local?.link ? local?.link : <ArrowRight />}
-                      </Show>
-                    )
+                ?? (
+                  <Show when={local.isLink || local.url}>
+                    <ArrowRight class="nut-cell__link" />
+                  </Show>
+                )
               }
             </>
           )}

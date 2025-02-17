@@ -26,7 +26,7 @@ test('prop desc-text-align left', () => {
 test('prop isLink', () => {
   const { container } = render(() => <Cell isLink />)
   
-  expect(container.children[0].classList).toContain('nut-cell__link')
+  expect(container.children[0].children[0].classList).toContain('nut-cell__link')
   expect(container.children[0]).toMatchSnapshot()
 })
 
