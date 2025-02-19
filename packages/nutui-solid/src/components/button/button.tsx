@@ -1,6 +1,6 @@
 import { Show, createMemo, mergeProps, splitProps } from 'solid-js'
 import { type Component, type JSX } from 'solid-js'
-import { Loading } from '../icon-temple/loading'
+import { Loading } from '@nutui/icons-solid'
 
 export type ButtonType =
   | 'default'
@@ -105,7 +105,6 @@ export const Button: Component<ButtonProps> = (props) => {
     >
       <div class="nut-button__wrap">
         <Show when={local.loading} fallback={null}>
-          {/* Loading Component */}
           <Loading />
         </Show>
         <Show when={!local.loading && local.icon} fallback={null}>
