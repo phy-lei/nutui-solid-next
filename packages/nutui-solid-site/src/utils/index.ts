@@ -29,6 +29,6 @@ export function copyCodeHtml(code: string, callback: any): void {
   callback()
 }
 export function isMobile(userAgent: string) {
-  const ua = userAgent.toLowerCase();
+  const ua = userAgent?.toLowerCase();
   return /ios|iphone|ipod|ipad|android/.test(ua)
 } 
