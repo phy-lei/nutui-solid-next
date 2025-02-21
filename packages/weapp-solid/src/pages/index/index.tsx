@@ -1,7 +1,6 @@
 import { Text, View } from '@tarojs/components'
 import { useLoad } from '@tarojs/taro'
-import { Add } from '@nutui/icons-solid-taro'
-import { Button } from 'nutui-solid'
+import { Add, Star } from '@nutui/icons-solid-taro'
 import './index.css'
 
 export default function Index() {
@@ -13,7 +12,7 @@ export default function Index() {
     <View class="index">
       <Text>Hello world!</Text>
       <Add />
-      <Button>123</Button>
+      <Star color="red" size="24" />
     </View>
   )
 }

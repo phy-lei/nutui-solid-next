@@ -18,7 +18,13 @@ iconsConfig.map((name) => {
 // https://vitejs.dev/config/
 export default defineConfig({
   publicDir: false,
-  plugins: [solidPlugin()],
+  plugins: [solidPlugin({
+    solid: {
+      moduleName: '@tarojs/plugin-framework-solid/dist/reconciler',
+      generate: 'universal',
+      uniqueTransform: true,
+    }
+  })],
   build: {
     lib: {
       entry: input,

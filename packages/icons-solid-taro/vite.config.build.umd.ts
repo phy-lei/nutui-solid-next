@@ -5,7 +5,13 @@ import solidPlugin from './plugin/vite-plugin-solid'
 // https://vitejs.dev/config/
 export default defineConfig({
   publicDir: false,
-  plugins: [solidPlugin()],
+  plugins: [solidPlugin({
+    solid: {
+      moduleName: '@tarojs/plugin-framework-solid/dist/reconciler',
+      generate: 'universal',
+      uniqueTransform: true,
+    }
+  })],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/buildEntry/lib-new.ts'),

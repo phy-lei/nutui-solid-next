@@ -140,6 +140,7 @@ export interface Options {
      * @default ["For","Show","Switch","Match","Suspense","SuspenseList","Portal","Index","Dynamic","ErrorBoundary"]
      */
     builtIns?: string[];
+    uniqueTransform?: boolean;
   };
 }
 
