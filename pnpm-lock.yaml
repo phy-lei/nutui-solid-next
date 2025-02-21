@@ -79,7 +79,53 @@ importers:
         specifier: ^2.11.1
         version: 2.11.1(@testing-library/jest-dom@6.4.6(@jest/globals@29.7.0)(@types/jest@29.5.12)(jest@29.7.0(@types/node@18.19.60)(ts-node@10.9.2(@types/node@18.19.60)(typescript@5.4.5)))(vitest@2.0.2(@types/node@18.19.60)(@vitest/ui@2.0.2)(jsdom@24.1.0)(sass@1.77.5)(terser@5.31.1)))(solid-js@1.8.17)(vite@5.3.1(@types/node@18.19.60)(sass@1.77.5)(terser@5.31.1))
 
-  packages/icons-solid-taro: {}
+  packages/icons-solid-taro:
+    devDependencies:
+      '@babel/core':
+        specifier: ^7.23.3
+        version: 7.24.7
+      '@types/fs-extra':
+        specifier: ^9.0.13
+        version: 9.0.13
+      '@types/glob':
+        specifier: ^8.0.0
+        version: 8.1.0
+      '@types/node':
+        specifier: ^18.11.10
+        version: 18.19.60
+      '@types/svg-parser':
+        specifier: ^2.0.3
+        version: 2.0.6
+      babel-plugin-transform-solid-jsx:
+        specifier: 4.0.0-beta.85
+        version: 4.0.0-beta.85(@babel/core@7.24.7)
+      consola:
+        specifier: ^2.15.3
+        version: 2.15.3
+      fs-extra:
+        specifier: ^11.1.0
+        version: 11.2.0
+      glob:
+        specifier: ^8.1.0
+        version: 8.1.0
+      merge-anything:
+        specifier: ^5.1.7
+        version: 5.1.7
+      solid-refresh:
+        specifier: ^0.6.3
+        version: 0.6.3(solid-js@1.8.17)
+      ts-node:
+        specifier: 10.9.2
+        version: 10.9.2(@types/node@18.19.60)(typescript@5.4.5)
+      vite:
+        specifier: ^5.1.3
+        version: 5.3.1(@types/node@18.19.60)(sass@1.77.5)(terser@5.31.1)
+      vite-plugin-dts:
+        specifier: 3.6.4
+        version: 3.6.4(@types/node@18.19.60)(rollup@4.18.0)(typescript@5.4.5)(vite@5.3.1(@types/node@18.19.60)(sass@1.77.5)(terser@5.31.1))
+      vitefu:
+        specifier: ^0.2.5
+        version: 0.2.5(vite@5.3.1(@types/node@18.19.60)(sass@1.77.5)(terser@5.31.1))
 
   packages/nutui-solid:
     dependencies:
@@ -1473,14 +1519,8 @@ packages:
   '@vscode/l10n@0.0.18':
     resolution: {integrity: sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==}
 
-  '@vue/compiler-core@3.4.29':
-    resolution: {integrity: sha512-TFKiRkKKsRCKvg/jTSSKK7mYLJEQdUiUfykbG49rubC9SfDyvT2JrzTReopWlz2MxqeLyxh9UZhvxEIBgAhtrg==}
-
   '@vue/compiler-core@3.4.30':
     resolution: {integrity: sha512-ZL8y4Xxdh8O6PSwfdZ1IpQ24PjTAieOz3jXb/MDTfDtANcKBMxg1KLm6OX2jofsaQGYfIVzd3BAG22i56/cF1w==}
-
-  '@vue/compiler-dom@3.4.29':
-    resolution: {integrity: sha512-A6+iZ2fKIEGnfPJejdB7b1FlJzgiD+Y/sxxKwJWg1EbJu6ZPgzaPQQ51ESGNv0CP6jm6Z7/pO6Ia8Ze6IKrX7w==}
 
   '@vue/compiler-dom@3.4.30':
     resolution: {integrity: sha512-+16Sd8lYr5j/owCbr9dowcNfrHd+pz+w2/b5Lt26Oz/kB90C9yNbxQ3bYOvt7rI2bxk0nqda39hVcwDFw85c2Q==}
@@ -1498,9 +1538,6 @@ packages:
     peerDependenciesMeta:
       typescript:
         optional: true
-
-  '@vue/shared@3.4.29':
-    resolution: {integrity: sha512-hQ2gAQcBO/CDpC82DCrinJNgOHI2v+FA7BDW4lMSPeBpQ7sRe2OLHWe5cph1s7D8DUQAwRt18dBDfJJ220APEA==}
 
   '@vue/shared@3.4.30':
     resolution: {integrity: sha512-CLg+f8RQCHQnKvuHY9adMsMaQOcqclh6Z5V9TaoMgy0ut0tz848joZ7/CYFFyF/yZ5i2yaw7Fn498C+CNZVHIg==}
@@ -7438,14 +7475,6 @@ snapshots:
 
   '@vscode/l10n@0.0.18': {}
 
-  '@vue/compiler-core@3.4.29':
-    dependencies:
-      '@babel/parser': 7.24.7
-      '@vue/shared': 3.4.29
-      entities: 4.5.0
-      estree-walker: 2.0.2
-      source-map-js: 1.2.0
-
   '@vue/compiler-core@3.4.30':
     dependencies:
       '@babel/parser': 7.24.7
@@ -7453,11 +7482,6 @@ snapshots:
       entities: 4.5.0
       estree-walker: 2.0.2
       source-map-js: 1.2.0
-
-  '@vue/compiler-dom@3.4.29':
-    dependencies:
-      '@vue/compiler-core': 3.4.29
-      '@vue/shared': 3.4.29
 
   '@vue/compiler-dom@3.4.30':
     dependencies:
@@ -7485,8 +7509,8 @@ snapshots:
     dependencies:
       '@volar/language-core': 1.11.1
       '@volar/source-map': 1.11.1
-      '@vue/compiler-dom': 3.4.29
-      '@vue/shared': 3.4.29
+      '@vue/compiler-dom': 3.4.30
+      '@vue/shared': 3.4.30
       computeds: 0.0.1
       minimatch: 9.0.4
       muggle-string: 0.3.1
@@ -7494,8 +7518,6 @@ snapshots:
       vue-template-compiler: 2.7.16
     optionalDependencies:
       typescript: 5.4.5
-
-  '@vue/shared@3.4.29': {}
 
   '@vue/shared@3.4.30': {}
 

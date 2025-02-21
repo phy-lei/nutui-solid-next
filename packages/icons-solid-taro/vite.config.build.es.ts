@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
-import solidPlugin from 'vite-plugin-solid'
+import solidPlugin from './plugin/vite-plugin-solid'
 import { iconsConfig } from './src/components/iconsConfig'
 
 let input = {

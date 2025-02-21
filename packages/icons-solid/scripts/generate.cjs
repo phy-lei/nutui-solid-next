@@ -65,11 +65,6 @@ if (projectID) {
     iconsReactTaroDir = `${projectID}-icons-solid-taro`;
 }
 
-let svgConfig = {}
-fsExtra.readFile(path.join(__dirname, '../../icons-svg/config.json')).then(res => {
-    svgConfig = JSON.parse(res.toString())
-})
-
 new glob.Glob(pattern, {}, (err, files) => {
     const entryArray = []
     files.forEach(file => {
