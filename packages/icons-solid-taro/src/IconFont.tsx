@@ -2,7 +2,7 @@ import { Show, createMemo, mergeProps, splitProps } from 'solid-js'
 import { type JSX, type ParentProps } from 'solid-js'
 import { globalConfig } from './internal'
 
-export interface IconFontProps {
+export type IconFontProps = Partial<{
   name: string
   size: string | number
   classPrefix: string
@@ -12,7 +12,7 @@ export interface IconFontProps {
   fontClassName: string
   class: string
   style: JSX.CSSProperties
-}
+}>
 
 const defaultProps = {
   name: '',
