@@ -32,7 +32,7 @@ export default defineConfig({
     },
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
-      external: ['solid-js', 'solid-js/web', 'solid-js/h', './internal', './configure'],
+      external: ['solid-js', 'solid-js/web', 'solid-js/h', '@tarojs/plugin-framework-solid/dist/reconciler', './internal', './configure'],
       // input,
       output: {
         paths: (id) => {

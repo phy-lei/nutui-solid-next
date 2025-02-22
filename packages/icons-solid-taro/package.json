@@ -30,6 +30,9 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
+  "peerDependencies": {
+    "@tarojs/plugin-framework-solid": "^4.0.9"
+  },
   "devDependencies": {
     "@babel/core": "^7.23.3",
     "@tarojs/plugin-framework-solid": "4.0.9",
