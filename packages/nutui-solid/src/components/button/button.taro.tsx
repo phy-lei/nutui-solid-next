@@ -1,3 +1,4 @@
+import { Loading } from '@nutui/icons-solid'
 import { Show, createMemo, mergeProps, splitProps } from 'solid-js'
 import { type Component, type JSX } from 'solid-js'
 import { Loading } from '@nutui/icons-solid'

@@ -1,5 +1,5 @@
+import { Loading } from '@nutui/icons-solid'
 import { Image, Space } from 'nutui-solid'
-import { Loading } from '../../icon-temple/loading'
 
 function LoadingDemo() {
   return (

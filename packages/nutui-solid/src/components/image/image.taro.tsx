@@ -1,7 +1,6 @@
 import { Component, JSX, ParentProps, Show, createEffect, createMemo, createSignal, mergeProps, onCleanup, onMount, splitProps } from 'solid-js'
 import { DOMElement } from 'solid-js/jsx-runtime'
-import { ImageLoading } from '../icon-temple/image-loading'
-import { ImageError } from '../icon-temple/image-error'
+import { ImageError, ImageIcon } from '@nutui/icons-solid'
 import { pxCheck } from '@/utils/pxCheck'
 
 export type ImageFit = 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
@@ -168,13 +167,13 @@ export const Image: Component<ParentProps<ImageProps>> = (props) => {
       <Show when={loading()}>
         {local.loading ?? (
           <div class="nut-img-loading">
-            <ImageLoading />
+            <ImageIcon width="16px" height="20px" name="image" />
           </div>
         )}
       </Show>
       <Show when={isError() && !loading()}>
         <div class="nut-img-error">
-          <ImageError />
+          <ImageError width="16px" height="20px" name="imageError" />
         </div>
       </Show>
     </div>

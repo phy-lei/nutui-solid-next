@@ -13,16 +13,15 @@ exports[`prop isLink 1`] = `
   class="nut-cell nut-cell--clickable"
 >
   <svg
-    class="nut-cell__link"
-    data-testid="test-cell-svg"
-    height="16"
-    viewBox="0 0 24 24"
-    width="16"
+    aria-labelledby="ArrowRight"
+    class="nut-icon nut-icon-ArrowRight nut-cell__link"
+    role="presentation"
+    viewBox="0 0 1024 1024"
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      d="M8.465 20.485L16.95 12L8.465 3.515L7.05 4.929L14.122 12L7.05 19.071l1.415 1.414Z"
-      fill="#888888"
+      d="M353.83 158.17a42.67 42.67 0 1 1 60.34-60.34l384 384a42.67 42.67 0 0 1 0 60.36l-384 384a42.67 42.67 0 1 1-60.34-60.36L707.67 512 353.83 158.17z"
+      fill="currentColor"
     />
   </svg>
 </div>
