@@ -33,7 +33,7 @@ const Icon: Component<ParentProps<SVG_IconProps>> = (props) => {
   const pxCheck = (value: string | number): string => {
     if (value === '')
       return ''
-    return Number.isNaN(Number(value)) ? String(value) : `${value}px`
+    return isNaN(Number(value)) ? String(value) : `${value}px`
   }
 
   const classes = createMemo(() => {

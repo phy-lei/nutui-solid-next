@@ -1,10 +1,11 @@
 import { Button } from 'nutui-solid'
+import { Star, StarFill } from '@nutui/icons-solid'
 
 function Demo6() {
   return (
     <>
-      <Button shape="square" plain type="primary" icon={<div>start</div>} />
-      <Button shape="square" type="primary" icon={<div>hello</div>} />
+      <Button shape="square" plain type="primary" icon={<StarFill />} />
+      <Button shape="square" type="primary" icon={<Star />}>Star</Button>
     </>
   )
 }

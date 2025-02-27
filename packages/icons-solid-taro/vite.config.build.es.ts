@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import { resolve } from 'path'
-import solidPlugin from 'vite-plugin-solid'
+import solidPlugin from './plugin/vite-plugin-solid'
 import { iconsConfig } from './src/components/iconsConfig'
 
 let input = {
@@ -18,7 +18,13 @@ iconsConfig.map((name) => {
 // https://vitejs.dev/config/
 export default defineConfig({
   publicDir: false,
-  plugins: [solidPlugin()],
+  plugins: [solidPlugin({
+    solid: {
+      moduleName: '@tarojs/plugin-framework-solid/dist/reconciler',
+      generate: 'universal',
+      uniqueTransform: true,
+    }
+  })],
   build: {
     lib: {
       entry: input,
@@ -26,7 +32,7 @@ export default defineConfig({
     },
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
-      external: ['solid-js', 'solid-js/web', 'solid-js/h', './internal', './configure'],
+      external: ['solid-js', 'solid-js/web', 'solid-js/h', '@tarojs/plugin-framework-solid/dist/reconciler', './internal', './configure'],
       // input,
       output: {
         paths: (id) => {

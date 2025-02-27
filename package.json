@@ -9,7 +9,7 @@
   "main": "index.js",
   "scripts": {
     "gen-icon": "pnpm --filter @nutui/icons-solid run build",
-    "dev": "pnpm dev-ui & pnpm --filter nutui-solid-site run dev",
+    "dev": "./bootstrap.sh",
     "build": "pnpm build-ui && pnpm --filter nutui-solid-site run build",
     "dev-ui": "pnpm --filter nutui-solid run dev",
     "build-ui": "pnpm --filter nutui-solid run build",
