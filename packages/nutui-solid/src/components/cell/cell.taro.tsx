@@ -1,4 +1,5 @@
 import { Component, JSX, ParentProps, Show, createMemo, mergeProps, splitProps } from 'solid-js'
+import { ArrowRight } from '@nutui/icons-solid'
 import { pxCheck } from '@/utils/pxCheck'
 
 export type CellSize = 'normal' | 'large'
@@ -89,7 +90,7 @@ export const Cell: Component<ParentProps<CellProps>> = (props) => {
   })
 
   const handleClick: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent> = (e) => {
-    if (typeof local.onClick === 'function') {
+    if (typeof local?.onClick === 'function') {
       local.onClick(e)
     }
     if (props.url)
@@ -120,12 +121,11 @@ export const Cell: Component<ParentProps<CellProps>> = (props) => {
               </Show>
               {
                 local?.link
-                  ? local?.link
-                  : (
-                      <Show when={local.isLink}>
-                        {local?.link ? local?.link : <svg xmlns="http://www.w3.org/2000/svg" data-testid="test-cell-svg" class="nut-cell__link" width="16" height="16" viewBox="0 0 24 24"><path fill="#888888" d="M8.465 20.485L16.95 12L8.465 3.515L7.05 4.929L14.122 12L7.05 19.071l1.415 1.414Z" /></svg>}
-                      </Show>
-                    )
+                ?? (
+                  <Show when={local.isLink || local.url}>
+                    <ArrowRight class="nut-cell__link" />
+                  </Show>
+                )
               }
             </>
           )}
