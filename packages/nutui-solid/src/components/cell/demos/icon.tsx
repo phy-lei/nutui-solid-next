@@ -7,7 +7,7 @@ function Icon() {
       title={(
         <div style={{ 'display': 'flex', 'align-items': 'center' }}>
           <User />
-          <span style={{ 'margin-left': '4px' }}>Title</span>
+          <span style={{ 'margin-left': '4px' }}>Icon</span>
         </div>
       )}
       desc="Description"
