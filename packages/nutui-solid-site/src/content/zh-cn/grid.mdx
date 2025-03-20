@@ -1,0 +1,111 @@
+---
+layout: ../../layouts/Layout.astro
+title: Grid
+---
+
+import CodeBlock from '@/components/CodeBlock.astro'
+
+# Cell 单元格 
+
+### 介绍
+
+列表项，可组成列表。
+
+### 安装
+
+```tsx
+import { Grid, GridItem } from '@nutui/nutui-solid';
+```
+
+### 基础用法
+
+:::demo
+
+<CodeBlock src='basic.tsx'></CodeBlock>
+
+:::
+
+### 自定义列数
+
+:::demo
+
+<CodeBlock src='column.tsx'></CodeBlock>
+
+:::
+
+### 正方形格子
+
+:::demo
+
+<CodeBlock src='square.tsx'></CodeBlock>
+
+:::
+
+### 格子间距
+
+:::demo
+
+<CodeBlock src='gutter.tsx'></CodeBlock>
+
+:::
+
+### 内容翻转
+
+:::demo
+
+<CodeBlock src='reverse.tsx'></CodeBlock>
+
+:::
+
+### 内容横向
+
+:::demo
+
+<CodeBlock src='horizontal.tsx'></CodeBlock>
+
+:::
+
+### 自定义内容
+
+:::demo
+
+<CodeBlock src='content.tsx'></CodeBlock>
+
+:::
+
+## API
+
+### Grid Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| columnNum | 列数 | number \| string | `4` |
+| border | 是否显示边框 | boolean | `true` |
+| gutter | 格子之间的间距，默认单位为 `px` | number \| string | `0` |
+| center | 是否将格子内容居中显示 | boolean | `true` |
+| square | 是否将格子固定为正方形 | boolean | `false` |
+| reverse | 内容翻转 | boolean | `false` |
+| direction | 格子内容排列的方向，可选值为 `horizontal` | string | `vertical` |
+| clickable | 是否开启格子点击反馈 | boolean | `false` |
+
+### GridItem Props
+
+| 参数 | 说明 | 类型 | 默认值 |
+| --- | --- | --- | --- |
+| text | 文字 | string | - |
+| onClick | 点击格子时触发 | (event: Event) => void | - |
+
+## 主题定制
+
+### 样式变量
+
+组件提供了下列 CSS 变量，可用于自定义样式，使用方法请参考 [ConfigProvider 组件](#/zh-CN/component/configprovider)。
+
+| 名称 | 默认值 |
+| --- | --- |
+| --nut-grid-border-color | _#f5f6f7_ |
+| --nut-grid-item-content-padding | _16px 8px_ |
+| --nut-grid-item-content-bg-color | _var(--nut-white)_ |
+| --nut-grid-item-text-margin | _8px_ |
+| --nut-grid-item-text-color | _var(--nut-title-color2)_ |
+| --nut-grid-item-text-font-size | _var(--nut-font-size-1)_ |

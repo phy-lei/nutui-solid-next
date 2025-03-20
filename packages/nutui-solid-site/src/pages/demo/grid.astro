@@ -1,0 +1,55 @@
+---
+import Demo from '@/components/Demo.astro';
+import MobileLayout from '@/layouts/MobileLayout.astro';
+import Basic from '~/nutui-solid/src/components/grid/demos/basic.tsx';
+import Column from '~/nutui-solid/src/components/grid/demos/column.tsx';
+import Square from '~/nutui-solid/src/components/grid/demos/square.tsx';
+import Gutter from '~/nutui-solid/src/components/grid/demos/gutter.tsx';
+import Reverse from '~/nutui-solid/src/components/grid/demos/reverse.tsx';
+import Horizontal from '~/nutui-solid/src/components/grid/demos/horizontal.tsx';
+import Content from '~/nutui-solid/src/components/grid/demos/content.tsx';
+
+const useTranslate = (obj) => {
+  return [obj['zh-CN']];
+};
+
+const [translated] = useTranslate({
+  'zh-CN': {
+    basic: '基础用法',
+    column: '自定义列数',
+    square: '正方形格子',
+    gutter: '格子间距',
+    reverse: '内容翻转',
+    horizontal: '内容横向',
+    content: '自定义内容',
+  },
+  'en-US': {
+    basic: 'Basic Usage',
+    column: 'Column Num',
+    square: 'Square',
+    gutter: 'Gutter',
+    reverse: 'Reverse',
+    horizontal: 'Horizontal',
+    content: 'Custom Content',
+  },
+});
+---
+
+<MobileLayout>
+  <Demo>
+    <h2>{translated.basic}</h2>
+    <Basic client:only="solid-js" />
+     <h2>{translated.column}</h2>
+    <Column client:only="solid-js" />
+    <h2>{translated.square}</h2>
+    <Square client:only="solid-js" />
+    <h2>{translated.gutter}</h2>
+    <Gutter client:only="solid-js" />
+    <h2>{translated.reverse}</h2>
+    <Reverse client:only="solid-js" />
+    <h2>{translated.horizontal}</h2>
+    <Horizontal client:only="solid-js" />
+    <h2>{translated.content}</h2>
+    <Content client:only="solid-js" />
+  </Demo>
+</MobileLayout>

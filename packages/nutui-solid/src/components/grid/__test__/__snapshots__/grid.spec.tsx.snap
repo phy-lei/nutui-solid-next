@@ -1,0 +1,190 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`should render default slot correctly 1`] = `
+<div
+  class="nut-grid-item__content nut-grid-item__content--border nut-grid-item__content--center"
+>
+  Default Slot
+  <div
+    class="nut-grid-item__text"
+  />
+</div>
+`;
+
+exports[`should render default slot correctly 2`] = `
+<div
+  class="nut-grid nut-grid-4 nut-grid-border"
+>
+  <div
+    class="nut-grid-item"
+    style="flex-basis: 25%;"
+  >
+    <div
+      class="nut-grid-item__content nut-grid-item__content--border nut-grid-item__content--center"
+    >
+      Default Slot
+      <div
+        class="nut-grid-item__text"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should render square correctly 1`] = `
+<div
+  class="nut-grid nut-grid-2 nut-grid-border"
+>
+  <div
+    class="nut-grid-item"
+    style="flex-basis: 50%; padding-top: 50%;"
+  >
+    <div
+      class="nut-grid-item__content nut-grid-item__content--border nut-grid-item__content--center nut-grid-item__content--square"
+    >
+      
+      <div
+        class="nut-grid-item__text"
+      />
+    </div>
+  </div>
+  <div
+    class="nut-grid-item"
+    style="flex-basis: 50%; padding-top: 50%;"
+  >
+    <div
+      class="nut-grid-item__content nut-grid-item__content--border nut-grid-item__content--center nut-grid-item__content--square"
+    >
+      
+      <div
+        class="nut-grid-item__text"
+      />
+    </div>
+  </div>
+  <div
+    class="nut-grid-item"
+    style="flex-basis: 50%; padding-top: 50%;"
+  >
+    <div
+      class="nut-grid-item__content nut-grid-item__content--border nut-grid-item__content--center nut-grid-item__content--square"
+    >
+      
+      <div
+        class="nut-grid-item__text"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`should render square correctly 2`] = `
+<div
+  class="nut-grid nut-grid-4 nut-grid-border"
+  style="padding-left: 20px; row-gap: 20px;"
+>
+  <div
+    class="nut-grid-item"
+    style="flex-basis: 25%; padding-right: 20px;"
+  >
+    <div
+      class="nut-grid-item__content nut-grid-item__content--border nut-grid-item__content--surround nut-grid-item__content--center"
+    >
+      
+      <div
+        class="nut-grid-item__text"
+      />
+    </div>
+  </div>
+  <div
+    class="nut-grid-item"
+    style="flex-basis: 25%; padding-right: 20px;"
+  >
+    <div
+      class="nut-grid-item__content nut-grid-item__content--border nut-grid-item__content--surround nut-grid-item__content--center"
+    >
+      
+      <div
+        class="nut-grid-item__text"
+      />
+    </div>
+  </div>
+  <div
+    class="nut-grid-item"
+    style="flex-basis: 25%; padding-right: 20px;"
+  >
+    <div
+      class="nut-grid-item__content nut-grid-item__content--border nut-grid-item__content--surround nut-grid-item__content--center"
+    >
+      
+      <div
+        class="nut-grid-item__text"
+      />
+    </div>
+  </div>
+  <div
+    class="nut-grid-item"
+    style="flex-basis: 25%; padding-right: 20px;"
+  >
+    <div
+      class="nut-grid-item__content nut-grid-item__content--border nut-grid-item__content--surround nut-grid-item__content--center"
+    >
+      
+      <div
+        class="nut-grid-item__text"
+      />
+    </div>
+  </div>
+  <div
+    class="nut-grid-item"
+    style="flex-basis: 25%; padding-right: 20px;"
+  >
+    <div
+      class="nut-grid-item__content nut-grid-item__content--border nut-grid-item__content--surround nut-grid-item__content--center"
+    >
+      
+      <div
+        class="nut-grid-item__text"
+      />
+    </div>
+  </div>
+  <div
+    class="nut-grid-item"
+    style="flex-basis: 25%; padding-right: 20px;"
+  >
+    <div
+      class="nut-grid-item__content nut-grid-item__content--border nut-grid-item__content--surround nut-grid-item__content--center"
+    >
+      
+      <div
+        class="nut-grid-item__text"
+      />
+    </div>
+  </div>
+  <div
+    class="nut-grid-item"
+    style="flex-basis: 25%; padding-right: 20px;"
+  >
+    <div
+      class="nut-grid-item__content nut-grid-item__content--border nut-grid-item__content--surround nut-grid-item__content--center"
+    >
+      
+      <div
+        class="nut-grid-item__text"
+      />
+    </div>
+  </div>
+  <div
+    class="nut-grid-item"
+    style="flex-basis: 25%; padding-right: 20px;"
+  >
+    <div
+      class="nut-grid-item__content nut-grid-item__content--border nut-grid-item__content--surround nut-grid-item__content--center"
+    >
+      
+      <div
+        class="nut-grid-item__text"
+      />
+    </div>
+  </div>
+</div>
+`;
