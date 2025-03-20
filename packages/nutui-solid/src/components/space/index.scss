@@ -25,7 +25,7 @@
       flex-wrap: wrap;
       margin-bottom: calc(#{$space-gap} * -1);
       > .nut-space-item {
-        padding-bottom: $space-gap;
+        margin-bottom: $space-gap;
       }
     }
   }
