@@ -1,6 +1,6 @@
+import { Loading } from '@nutui/icons-solid'
 import { Show, createMemo, mergeProps, splitProps } from 'solid-js'
 import { type Component, type JSX } from 'solid-js'
-import { Loading } from '@nutui/icons-solid'
 
 export type ButtonType =
   | 'default'
@@ -13,7 +13,7 @@ export type ButtonSize = 'xlarge' | 'large' | 'normal' | 'small' | 'mini'
 export type ButtonShape = 'square' | 'round'
 export type ButtonFill = 'solid' | 'outline' | 'dashed' | 'none'
 
-export interface ButtonProps extends JSX.HTMLAttributes<HTMLDivElement> {
+export type ButtonProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'style'> & Partial<{
   color: string
   shape: ButtonShape
   plain: boolean
@@ -23,7 +23,8 @@ export interface ButtonProps extends JSX.HTMLAttributes<HTMLDivElement> {
   size: ButtonSize
   block: boolean
   icon: JSX.Element
-}
+  style: JSX.CSSProperties
+}>
 
 const defaultProps: ButtonProps = {
   color: '',
@@ -37,7 +38,7 @@ const defaultProps: ButtonProps = {
   icon: null,
 }
 
-export const Button: Component<Partial<ButtonProps>> = (props) => {
+export const Button: Component<ButtonProps> = (props) => {
   const merged = mergeProps(defaultProps, props)
   const [local, rest] = splitProps(merged, [
     'color',
@@ -54,14 +55,16 @@ export const Button: Component<Partial<ButtonProps>> = (props) => {
     'style',
     'onClick',
     'ref',
+    'classList',
+    'class',
   ])
 
   const getStyle = createMemo(() => {
     let style: JSX.CSSProperties = {}
     if (local.color) {
       style = {
-        color: local.plain ? local.color : '#fff',
-        background: local.plain ? '#fff' : `border-box ${local.color}`,
+        color: local.plain ? local.color : 'rgb(255, 255, 255)',
+        background: local.plain ? 'rgb(255, 255, 255)' : `border-box ${local.color}`,
       }
       if (local.color.includes('gradient')) {
         style['border-color'] = 'transparent'
@@ -70,7 +73,7 @@ export const Button: Component<Partial<ButtonProps>> = (props) => {
         style['border-color'] = local.color
       }
     }
-    return style
+    return { ...style, ...local.style }
   })
 
   const handleClick: JSX.EventHandler<HTMLDivElement, MouseEvent> = (e) => {
@@ -92,6 +95,8 @@ export const Button: Component<Partial<ButtonProps>> = (props) => {
       [`${prefixCls}--block`]: local.block,
       [`${prefixCls}--disabled`]: local.disabled,
       [`${prefixCls}--loading`]: local.loading,
+      ...local.classList,
+      [local.class]: true,
     }
   })
 
@@ -103,7 +108,7 @@ export const Button: Component<Partial<ButtonProps>> = (props) => {
       style={getStyle()}
       onClick={handleClick}
     >
-      <div class="nut-button-wrap">
+      <div class="nut-button__wrap">
         <Show when={local.loading} fallback={null}>
           <Loading />
         </Show>

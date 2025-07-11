@@ -30,6 +30,8 @@ export const Space: Component<ParentProps<SpaceProps>> = (props) => {
     'wrap',
     'fill',
     'children',
+    'classList',
+    'class',
   ])
 
   // gutter数值转换
@@ -72,6 +74,8 @@ export const Space: Component<ParentProps<SpaceProps>> = (props) => {
       [`${prefixCls}-justify-${local.justify}`]: true,
       [`${prefixCls}-wrap`]: local.wrap,
       [`${prefixCls}-fill`]: local.fill,
+      ...local.classList,
+      [local.class]: true,
     }
   })
 

@@ -91,17 +91,6 @@
           "exportEmpty": true,
           "taro": true,
           "author": "yisumay"
-        },
-        {
-          "version": "1.0.0",
-          "name": "Image",
-          "type": "component",
-          "cName": "图片",
-          "desc": "图片",
-          "sort": 2,
-          "show": true,
-          "taro": true,
-          "author": "yisumay"
         }
       ]
     },

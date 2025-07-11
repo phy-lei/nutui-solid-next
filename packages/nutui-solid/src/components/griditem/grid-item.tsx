@@ -1,5 +1,5 @@
-import { Component, JSX, ParentProps, createMemo, mergeProps, splitProps, useContext } from 'solid-js'
-import { GridContext } from '../grid/grid.context'
+import { Component, JSX, ParentProps, createMemo, mergeProps, splitProps } from 'solid-js'
+import { useGridContext } from '../grid/grid.context'
 import { pxCheck } from '@/utils/px-check'
 
 export type GridItemProps = JSX.HTMLAttributes<HTMLDivElement> & Partial<{
@@ -21,12 +21,14 @@ const defaultProps = {
 
 export const GridItem: Component<ParentProps<GridItemProps>> = (props) => {
   const merged = mergeProps(defaultProps, props)
-  const parent = useContext(GridContext) || {}
+  const parent = useGridContext()
 
   const [local, rest] = splitProps(merged, [
     'text',
     'url',
     'replace',
+    'class',
+    'children',
   ])
 
   const rootStyle = createMemo(() => {
@@ -66,12 +68,10 @@ export const GridItem: Component<ParentProps<GridItemProps>> = (props) => {
   }
 
   return (
-    <div class="nut-grid-item" style={rootStyle()} onClick={handleClick}>
-      <div classList={contentClass()}>
-        {rest.children}
-        <div class="nut-grid-item__text">
-          {local.text}
-        </div>
+    <div {...rest} class={`nut-grid-item ${local.class}`} style={rootStyle()} onClick={handleClick}>
+      <div classList={contentClass()}>{local.children}</div>
+      <div class="nut-grid-item__text">
+        {local.text}
       </div>
     </div>
   )

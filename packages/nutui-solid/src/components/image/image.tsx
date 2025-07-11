@@ -6,7 +6,7 @@ import { pxCheck } from '@/utils/px-check'
 export type ImageFit = 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
 export type ImagePosition = 'center' | 'top' | 'right' | 'bottom' | 'left' | string
 
-export type ImageProps = Omit<JSX.HTMLAttributes<HTMLImageElement>, 'onClick'> & Partial<{
+export type ImageProps = Omit<JSX.HTMLAttributes<HTMLImageElement>, 'onClick' | 'style'> & Partial<{
   src: string
   fit: ImageFit
   position: ImagePosition
@@ -21,6 +21,7 @@ export type ImageProps = Omit<JSX.HTMLAttributes<HTMLImageElement>, 'onClick'> &
   loading: JSX.Element
   error: JSX.Element
   onClick: JSX.EventHandlerUnion<HTMLDivElement, MouseEvent>
+  style: JSX.CSSProperties
 }>
 
 const defaultProps: ImageProps = {
@@ -53,6 +54,8 @@ export const Image: Component<ParentProps<ImageProps>> = (props) => {
     'onClick',
     'onLoad',
     'onError',
+    'style',
+    'class',
   ])
 
   const [loading, setLoading] = createSignal(true)
@@ -112,6 +115,7 @@ export const Image: Component<ParentProps<ImageProps>> = (props) => {
     const styless: JSX.CSSProperties = {
       'object-fit': local.fit,
       'object-position': local.position,
+      ...local.style,
     }
 
     return styless
@@ -157,7 +161,7 @@ export const Image: Component<ParentProps<ImageProps>> = (props) => {
     <div classList={classes()} style={stylebox()} onClick={imageClick}>
       <img
         ref={imgRef}
-        class="nut-img"
+        class={`nut-img ${local.class}`}
         src={local.lazyLoad ? (show() ? local.src : undefined) : local.src}
         data-src={local.lazyLoad ? (show() ? undefined : local.src) : undefined}
         style={styles()}

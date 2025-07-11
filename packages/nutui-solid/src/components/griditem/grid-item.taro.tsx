@@ -27,6 +27,8 @@ export const GridItem: Component<ParentProps<GridItemProps>> = (props) => {
     'text',
     'url',
     'replace',
+    'class',
+    'children',
   ])
 
   const rootStyle = createMemo(() => {
@@ -66,8 +68,8 @@ export const GridItem: Component<ParentProps<GridItemProps>> = (props) => {
   }
 
   return (
-    <div class="nut-grid-item" style={rootStyle()} onClick={handleClick}>
-      <div classList={contentClass()}>{rest.children}</div>
+    <div {...rest} class={`nut-grid-item ${local.class}`} style={rootStyle()} onClick={handleClick}>
+      <div classList={contentClass()}>{local.children}</div>
       <div class="nut-grid-item__text">
         {local.text}
       </div>

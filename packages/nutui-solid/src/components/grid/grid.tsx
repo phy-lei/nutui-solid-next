@@ -4,7 +4,7 @@ import { pxCheck } from '@/utils/px-check'
 
 export type GridDirection = 'horizontal' | 'vertical'
 
-export type GridLocalProps = Partial<{
+export type GridProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'style'> & Partial<{
   columnNum: string | number
   border: boolean
   gutter: string | number
@@ -13,9 +13,8 @@ export type GridLocalProps = Partial<{
   reverse: boolean
   direction: GridDirection
   clickable: boolean
+  style: JSX.CSSProperties
 }>
-
-export type GridProps = JSX.HTMLAttributes<HTMLDivElement> & GridLocalProps
 
 const defaultProps = {
   columnNum: 4,
@@ -39,6 +38,10 @@ export const Grid: Component<ParentProps<GridProps>> = (props) => {
     'reverse',
     'direction',
     'clickable',
+    'classList',
+    'style',
+    'children',
+    'class',
   ])
 
   const classes = createMemo(() => {
@@ -47,6 +50,8 @@ export const Grid: Component<ParentProps<GridProps>> = (props) => {
       [prefixCls]: true,
       [`${prefixCls}-${local.columnNum}`]: true,
       [`${prefixCls}-border`]: local.border,
+      ...local.classList,
+      [local.class]: true,
     }
   })
 
@@ -56,7 +61,7 @@ export const Grid: Component<ParentProps<GridProps>> = (props) => {
       style['padding-left'] = pxCheck(props.gutter)
       style['row-gap'] = pxCheck(props.gutter)
     }
-    return style
+    return { ...style, ...local.style }
   })
 
   return (
@@ -70,8 +75,8 @@ export const Grid: Component<ParentProps<GridProps>> = (props) => {
       direction={local.direction}
       clickable={local.clickable}
     >
-      <div classList={classes()} style={styles()}>
-        {rest.children}
+      <div classList={classes()} style={styles()} {...rest}>
+        {local.children}
       </div>
     </GridContextProvider>
   )

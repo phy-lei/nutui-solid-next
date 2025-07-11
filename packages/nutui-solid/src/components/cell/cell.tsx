@@ -4,7 +4,7 @@ import { pxCheck } from '@/utils/px-check'
 
 export type CellSize = 'normal' | 'large'
 
-export type CellProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'title'> & Partial<{
+export type CellProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'title' | 'style'> & Partial<{
   title: JSX.Element
   subTitle: JSX.Element
   desc: JSX.Element
@@ -23,6 +23,7 @@ export type CellProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'title'> & Part
    */
   url: string
   link: JSX.Element
+  style: JSX.CSSProperties
 }>
 
 const defaultProps: CellProps = {
@@ -56,6 +57,9 @@ export const Cell: Component<ParentProps<CellProps>> = (props) => {
     'link',
     'onClick',
     'children',
+    'style',
+    'classList',
+    'class',
   ])
 
   const classes = createMemo(() => {
@@ -65,15 +69,17 @@ export const Cell: Component<ParentProps<CellProps>> = (props) => {
       [`${prefixCls}--clickable`]: local.isLink,
       [`${prefixCls}--center`]: local.center,
       [`${prefixCls}--large`]: local.size === 'large',
+      ...local.classList,
+      [local.class]: true,
     }
   })
 
   const baseStyle = createMemo(() => {
+    const style = local.style
     if (local.roundRadius) {
-      return {
-        'border-radius': pxCheck(local.roundRadius),
-      } as JSX.CSSProperties
+      style['border-radius'] = pxCheck(local.roundRadius)
     }
+    return style
   })
 
   const descStyle = createMemo(() => {
@@ -102,24 +108,24 @@ export const Cell: Component<ParentProps<CellProps>> = (props) => {
       {local?.children
         ? local?.children
         : (
-            <>
-              <Show when={local.icon}>
-                <div class="nut-cell__icon">
-                  {local.icon}
-                </div>
-              </Show>
-              <Show when={local.title || local.subTitle}>
-                <div class="nut-cell__title">
-                  <div class="title">{local.title}</div>
-                  <Show when={local.subTitle}>
-                    <div class="nut-cell__title-desc">{ local.subTitle}</div>
-                  </Show>
-                </div>
-              </Show>
-              <Show when={local.desc}>
-                <div classList={descClasses()} style={descStyle()}>{local.desc}</div>
-              </Show>
-              {
+          <>
+            <Show when={local.icon}>
+              <div class="nut-cell__icon">
+                {local.icon}
+              </div>
+            </Show>
+            <Show when={local.title || local.subTitle}>
+              <div class="nut-cell__title">
+                <div class="title">{local.title}</div>
+                <Show when={local.subTitle}>
+                  <div class="nut-cell__title-desc">{ local.subTitle}</div>
+                </Show>
+              </div>
+            </Show>
+            <Show when={local.desc}>
+              <div classList={descClasses()} style={descStyle()}>{local.desc}</div>
+            </Show>
+            {
                 local?.link
                 ?? (
                   <Show when={local.isLink || local.url}>
@@ -127,7 +133,7 @@ export const Cell: Component<ParentProps<CellProps>> = (props) => {
                   </Show>
                 )
               }
-            </>
+          </>
           )}
     </div>
   )

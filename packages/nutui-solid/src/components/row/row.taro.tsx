@@ -25,6 +25,8 @@ export const Row: Component<ParentProps<RowProps>> = (props) => {
     'justify',
     'align',
     'flexWrap',
+    'classList',
+    'class',
   ])
 
   const getClass = (prefix: string, type: string) => {
@@ -38,6 +40,8 @@ export const Row: Component<ParentProps<RowProps>> = (props) => {
       [getClass('justify', local.justify)]: true,
       [getClass('align', local.align)]: true,
       [getClass('flex', local.flexWrap)]: true,
+      ...local.classList,
+      [local.class]: true,
     }
   })
 

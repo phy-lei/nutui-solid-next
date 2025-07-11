@@ -13,7 +13,7 @@ export type ButtonSize = 'xlarge' | 'large' | 'normal' | 'small' | 'mini'
 export type ButtonShape = 'square' | 'round'
 export type ButtonFill = 'solid' | 'outline' | 'dashed' | 'none'
 
-export type ButtonProps = JSX.HTMLAttributes<HTMLDivElement> & Partial<{
+export type ButtonProps = Omit<JSX.HTMLAttributes<HTMLDivElement>, 'style'> & Partial<{
   color: string
   shape: ButtonShape
   plain: boolean
@@ -23,6 +23,7 @@ export type ButtonProps = JSX.HTMLAttributes<HTMLDivElement> & Partial<{
   size: ButtonSize
   block: boolean
   icon: JSX.Element
+  style: JSX.CSSProperties
 }>
 
 const defaultProps: ButtonProps = {
@@ -54,6 +55,7 @@ export const Button: Component<ButtonProps> = (props) => {
     'style',
     'onClick',
     'ref',
+    'classList',
   ])
 
   const getStyle = createMemo(() => {
@@ -70,7 +72,7 @@ export const Button: Component<ButtonProps> = (props) => {
         style['border-color'] = local.color
       }
     }
-    return style
+    return { ...style, ...local.style }
   })
 
   const handleClick: JSX.EventHandler<HTMLDivElement, MouseEvent> = (e) => {
@@ -92,6 +94,8 @@ export const Button: Component<ButtonProps> = (props) => {
       [`${prefixCls}--block`]: local.block,
       [`${prefixCls}--disabled`]: local.disabled,
       [`${prefixCls}--loading`]: local.loading,
+      ...local.classList,
+      [local.class]: true,
     }
   })
 
